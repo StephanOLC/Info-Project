@@ -12,6 +12,7 @@ import Main.Interface;
 
 
 public class box implements Runnable, object {
+	
 	public int x,y,height,width;
 	public float colorRed, colorBlue,colorGreen;
 	

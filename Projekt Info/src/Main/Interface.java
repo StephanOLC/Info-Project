@@ -25,6 +25,7 @@ import org.newdawn.slick.opengl.ImageIOImageData;
 import Objects.object;
 
 public class Interface {
+	
 	int height = 480;//Höhe des Fensters
 	int width = 640;//Weite des Fensters
 	List<object> objects = new ArrayList<object>();
