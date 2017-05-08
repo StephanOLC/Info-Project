@@ -17,19 +17,24 @@ public class box implements Runnable, object {
 	public float colorRed, colorBlue,colorGreen;
 	
 	public box(int x,int y, Interface inter){
+		
 		this(x, y, 50, 50,inter);
+		
 	}
 
 	public box(int x,int y, int height, int width, Interface inter){
+		
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		randomize();
 		inter.addobject((object) this);
+		
 	}
 	
 	public void draw(){
+		
 		glColor3f(colorRed,colorBlue,colorGreen);
 		
 		glBegin(GL_QUADS);
@@ -38,23 +43,27 @@ public class box implements Runnable, object {
 			glVertex2i(x + width, y + height);
 			glVertex2i(x,y+height);
 		glEnd();	
+		
 	}
 		
 	public int gety(){
+		
 		return y;
+		
 	}
 
 	@Override
 	public void run() {
-		
-		
+			
 	}
 	
 	public void randomize(){
+		
 		Random random = new Random();
 		colorRed = random.nextFloat();
 		colorBlue = random.nextFloat();
 		colorGreen = random.nextFloat();
+		
 	}
 
 }

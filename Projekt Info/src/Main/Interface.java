@@ -33,26 +33,37 @@ public class Interface {
 	object back;
 	
 	public Interface(){
+		
 		init();
+		
 	}
 	
 	public void init(){
+		
 		try {
+			
 			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle("Sandbox Test des Todes");
+			
 			try {
+				
 				Display.setIcon(new ByteBuffer[] {
 				        new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("Graphics/icon.png")), false, false, null),
 				        new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("Graphics/icon.png")), false, false, null)
 				        });
+				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
+				
 			}
+			
 			Display.create();
+			
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
+			
 		}
 		
 		//Initialization code OpenGL
@@ -67,7 +78,9 @@ public class Interface {
 	}
 	
 	public void run() {
+		
 		while(!Display.isCloseRequested()){
+			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
 			draw();
@@ -79,33 +92,48 @@ public class Interface {
 	}
 	
 	public void draw(){
+		
 		if(back != null){
+			
 			back.draw();
 		}
+		
 		objects.sort(new Sorter());
+		
 		for(object obj : objects){
+			
 			obj.draw();
+			
 		}
 		for(object obj : insert){
+			
 			objects.add(obj);
+			
 		}
+		
 		insert = new ArrayList<object>();
 		
 	}
 
 	public void addobject(object obj){
+		
 		insert.add(obj);
+		
 	}
 
 	public void setbackground(object obj){
+		
 		back = obj;
+		
 	}
 
 	public static class Sorter implements Comparator<object>{
 	
 		@Override
 		public int compare(object obj1, object obj2) {
+			
 			return obj1.gety()- obj2.gety();
+			
 		}
 		
 	}
