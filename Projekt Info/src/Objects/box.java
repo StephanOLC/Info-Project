@@ -15,6 +15,10 @@ public class box implements Runnable, object {
 	public int x,y,height,width;
 	public float colorRed, colorBlue,colorGreen;
 	
+	public box(int x,int y, Interface inter){
+		this(x, y, 50, 50,inter);
+	}
+
 	public box(int x,int y, int height, int width, Interface inter){
 		this.x = x;
 		this.y = y;
@@ -22,17 +26,6 @@ public class box implements Runnable, object {
 		this.height = height;
 		randomize();
 		inter.addobject((object) this);
-	}
-	
-	public box(int x,int y, Interface inter){
-		this(x, y, 50, 50,inter);
-	}
-	
-	public void randomize(){
-		Random random = new Random();
-		colorRed = random.nextFloat();
-		colorBlue = random.nextFloat();
-		colorGreen = random.nextFloat();
 	}
 	
 	public void draw(){
@@ -46,14 +39,21 @@ public class box implements Runnable, object {
 		glEnd();	
 	}
 		
+	public int gety(){
+		return y;
+	}
+
 	@Override
 	public void run() {
 		
 		
 	}
 	
-	public int gety(){
-		return y;
+	public void randomize(){
+		Random random = new Random();
+		colorRed = random.nextFloat();
+		colorBlue = random.nextFloat();
+		colorGreen = random.nextFloat();
 	}
 
 }

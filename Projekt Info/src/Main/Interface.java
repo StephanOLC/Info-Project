@@ -65,23 +65,6 @@ public class Interface {
 		
 	}
 	
-	public void addobject(object obj){
-		insert.add(obj);
-	}
-	
-	public static class Sorter implements Comparator<object>{
-
-		@Override
-		public int compare(object obj1, object obj2) {
-			return obj1.gety()- obj2.gety();
-		}
-		
-	}
-	
-	public void setbackground(object obj){
-		back = obj;
-	}
-		
 	public void run() {
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -106,6 +89,23 @@ public class Interface {
 			objects.add(obj);
 		}
 		insert = new ArrayList<object>();
+		
+	}
+
+	public void addobject(object obj){
+		insert.add(obj);
+	}
+
+	public void setbackground(object obj){
+		back = obj;
+	}
+
+	public static class Sorter implements Comparator<object>{
+	
+		@Override
+		public int compare(object obj1, object obj2) {
+			return obj1.gety()- obj2.gety();
+		}
 		
 	}
 }
