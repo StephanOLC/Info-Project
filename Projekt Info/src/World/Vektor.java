@@ -5,13 +5,12 @@ import java.lang.Math;
 public class Vektor {
 	
 	int x,y;
-	
-	Math math;
+	double length;
 	
 	public Vektor(int x, int y){
 		this.x = x;
 		this.y = y;
-		math = new Math();
+		length = Math.sqrt((x*x)+(y*y));
 	}
 	
 	public int getX(){
@@ -23,7 +22,7 @@ public class Vektor {
 	}
 	
 	public double length(){
-		return math.sqrt((x*x)+(y*y));
+		return length;
 	}
 	
 	public void invert(){
