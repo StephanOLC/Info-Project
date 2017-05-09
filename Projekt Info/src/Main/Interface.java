@@ -20,8 +20,9 @@ import Objects.object;
 
 public class Interface {
 	
-	int height = 480;//Höhe des Fensters
-	int width = 640;//Weite des Fensters
+	int height = 480;
+	int width = 640;
+	float movex,movey;
 	List<object> objects = new ArrayList<object>();
 	List<object> insert = new ArrayList<object>();
 	object back;
@@ -78,12 +79,17 @@ public class Interface {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
+			moveCamera();
 			draw();
 			
 			Display.update();
 			Display.sync(60);
 		}
 		
+	}
+	
+	public void moveCamera(){
+		glTranslatef(movex, movey, 0);
 	}
 	
 	public void draw(){

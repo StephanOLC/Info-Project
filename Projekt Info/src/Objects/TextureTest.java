@@ -66,7 +66,6 @@ public class TextureTest implements object, Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 	}
 
