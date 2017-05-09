@@ -26,9 +26,11 @@ public class Interface {
 	List<object> objects = new ArrayList<object>();
 	List<object> insert = new ArrayList<object>();
 	object back;
+	public boolean run;
 	
 	public Interface(){
 		
+		run = true;
 		init();
 		
 	}
@@ -86,6 +88,7 @@ public class Interface {
 			Display.sync(60);
 		}
 		
+		run = false;
 	}
 	
 	public void moveCamera(){

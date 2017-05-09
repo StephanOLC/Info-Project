@@ -10,6 +10,7 @@ public class GameController {
 	public GameController(Interface inter){
 		
 		this.inter = inter;
+		new Thread(new Input(inter)).start();
 		new Thread(new box(50,50,inter)).start();
 		new Thread(new box(300,300,inter)).start();
 		new Thread(new box(55,60,inter)).start();
