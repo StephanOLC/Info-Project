@@ -43,6 +43,7 @@ public class TextureTest implements object, Runnable {
 		
 		texture.bind();
 		glColor3f(1, 1, 1);
+		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0,0);
 			glVertex2i(x, y);

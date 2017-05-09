@@ -1,10 +1,6 @@
 package Objects;
 
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glColor3f;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex2i;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.util.Random;
 
@@ -35,8 +31,9 @@ public class box implements Runnable, object {
 	
 	public void draw(){
 		
-		glColor3f(colorRed,colorBlue,colorGreen);
+		glDisable(GL_TEXTURE_2D);
 		
+		glColor3f(colorRed,colorBlue,colorGreen);
 		glBegin(GL_QUADS);
 			glVertex2i(x,y);
 			glVertex2i(x + width, y);
