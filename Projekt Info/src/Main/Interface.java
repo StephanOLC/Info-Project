@@ -12,6 +12,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
@@ -36,6 +37,8 @@ public class Interface {
 	}
 	
 	public void init(){
+		
+		movex = 1;
 		
 		try {
 			
@@ -81,18 +84,47 @@ public class Interface {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
-			moveCamera();
 			draw();
+			moveCamera();
 			
 			Display.update();
 			Display.sync(60);
 		}
 		
-		run = false;
+		close();
 	}
 	
+	public void close(){
+		
+		run = false;
+		Display.destroy();
+		System.exit(1);
+		
+	}
+	
+	public int getwidth(){
+		
+		return width;
+		
+	}
+	
+	public int getheight(){
+		
+		return height;
+		
+	}
+	
+	
 	public void moveCamera(){
+		
 		glTranslatef(movex, movey, 0);
+		
+		
+	}
+	
+	public void setmovement(float x ,float y){
+		movex = x;
+		movey = y;
 	}
 	
 	public void draw(){
