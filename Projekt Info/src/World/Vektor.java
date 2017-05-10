@@ -29,4 +29,9 @@ public class Vektor {
 		x = -x;
 		y = -y;
 	}
+	
+	public Vektor connectingTo(Vektor to){
+		Vektor connectionVektor = new Vektor((to.getX()-x), (to.getY() - y));
+		return connectionVektor;
+	}
 }
