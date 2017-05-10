@@ -4,8 +4,8 @@ import java.lang.Math;
 
 public class Vektor {
 	
-	int x,y;
-	double length;
+	private int x,y;
+	private double length;
 	
 	public Vektor(int x, int y){
 		this.x = x;
@@ -28,6 +28,10 @@ public class Vektor {
 	public void invert(){
 		x = -x;
 		y = -y;
+	}
+	
+	public Vektor plus(Vektor add){
+		return new Vektor(x + add.getX(), y + add.getY());
 	}
 	
 	public Vektor connectingTo(Vektor to){
