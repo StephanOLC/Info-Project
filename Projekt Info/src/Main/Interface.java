@@ -43,7 +43,7 @@ public class Interface {
 		try {
 			
 			Display.setDisplayMode(new DisplayMode(width, height));
-			Display.setTitle("Sandbox Test des Todes");
+			Display.setTitle("Project: Osiris");
 			
 			try {
 				
