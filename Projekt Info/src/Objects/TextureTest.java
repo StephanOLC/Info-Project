@@ -6,8 +6,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class TextureTest implements object, Runnable {
 	
-	public int x,y,width,height;
-	public String path, fileformat;
+	int x,y,width,height;
+	String path, fileformat;
 	Texture texture;
 
 	public TextureTest(int x, int y ,String path,String fileformat,Interface inter ){

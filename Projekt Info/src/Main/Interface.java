@@ -28,10 +28,12 @@ public class Interface {
 	List<object> insert = new ArrayList<object>();
 	object back;
 	public boolean run;
+	boolean closerequested;
 	
 	public Interface(){
 		
 		run = true;
+		closerequested = false;
 		init();
 		
 	}
@@ -78,7 +80,7 @@ public class Interface {
 	
 	public void run() {
 		
-		while(!Display.isCloseRequested()){
+		while(!Display.isCloseRequested() && !closerequested){
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
@@ -93,11 +95,17 @@ public class Interface {
 		close();
 	}
 	
-	public void close(){
+	private void close(){
 		
 		run = false;
 		Display.destroy();
 		System.exit(1);
+		
+	}
+	
+	public void requestclose(){
+		
+		closerequested = true;
 		
 	}
 	
