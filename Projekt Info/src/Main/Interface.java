@@ -38,8 +38,6 @@ public class Interface {
 	
 	public void init(){
 		
-		movex = 1;
-		
 		try {
 			
 			Display.setDisplayMode(new DisplayMode(width, height));
@@ -84,8 +82,9 @@ public class Interface {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
-			draw();
+			getmovement();
 			moveCamera();
+			draw();
 			
 			Display.update();
 			Display.sync(60);
@@ -122,9 +121,40 @@ public class Interface {
 		
 	}
 	
+	public void getmovement(){
+		
+		if(Mouse.isButtonDown(0)){
+			
+			movex = Mouse.getDX();
+			movey = -Mouse.getDY();
+			
+		}else{
+			
+			movex *= 0.25f;
+			movey *= 0.35f;
+			
+			if(movex < 0.7){
+				
+				movex = 0;
+				
+			}
+			
+			if(movey < 0.7){
+				
+				movey = 0;
+				
+			}
+			
+		}
+		
+	}
+	
+	
 	public void setmovement(float x ,float y){
+		
 		movex = x;
 		movey = y;
+		
 	}
 	
 	public void draw(){

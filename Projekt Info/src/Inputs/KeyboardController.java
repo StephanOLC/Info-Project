@@ -6,12 +6,12 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import Main.Interface;
 
-public class Input implements Runnable{
+public class KeyboardController implements Runnable{
 	
 	Interface inter;
 	List<KeyboardListener> keyboardlistener = new ArrayList<KeyboardListener>(); 
 	
-	public Input(Interface inter){
+	public KeyboardController(Interface inter){
 		
 		this.inter = inter;
 

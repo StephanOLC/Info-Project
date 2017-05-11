@@ -1,18 +1,18 @@
 package Main;
 
-import Inputs.Input;
+import Inputs.KeyboardController;
 import Objects.TextureTest;
 import Objects.box;
 
 public class GameController {
 	
 	public Interface inter;
-	public Input input;
+	public KeyboardController input;
 	
 	public GameController(Interface inter){
 		
 		this.inter = inter;
-		input = new Input(inter);
+		input = new KeyboardController(inter);
 		new Thread(input).start();
 		new Thread(new box(50,50,inter)).start();
 		new Thread(new box(300,300,inter)).start();
