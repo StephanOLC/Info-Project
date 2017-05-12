@@ -7,23 +7,25 @@ import java.util.Random;
 import Main.Interface;
 
 
-public class box implements Runnable, object {
+public class box implements object {
 	
 	public int x,y,height,width;
 	public float colorRed, colorBlue,colorGreen;
+	String name;
 	
-	public box(int x,int y, Interface inter){
+	public box(int x,int y,String name, Interface inter){
 		
-		this(x, y, 50, 50,inter);
+		this(x, y, 50, 50,name,inter);
 		
 	}
 
-	public box(int x,int y, int height, int width, Interface inter){
+	public box(int x,int y, int height, int width,String name, Interface inter){
 		
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.name = name;
 		randomize();
 		inter.addobject((object) this);
 		
@@ -61,6 +63,12 @@ public class box implements Runnable, object {
 		colorBlue = random.nextFloat();
 		colorGreen = random.nextFloat();
 		
+	}
+
+	@Override
+	public String getName() {
+		
+		return name;
 	}
 
 }

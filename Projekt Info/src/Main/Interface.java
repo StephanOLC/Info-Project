@@ -89,7 +89,7 @@ public class Interface {
 			draw();
 			
 			Display.update();
-			Display.sync(60);
+			Display.sync(160);
 		}
 		
 		close();
@@ -179,6 +179,7 @@ public class Interface {
 			obj.draw();
 			
 		}
+		
 		for(object obj : insert){
 			
 			objects.add(obj);

@@ -1,22 +1,30 @@
 package Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.lwjgl.input.Keyboard;
 
 import Inputs.KeyboardController;
 import Inputs.KeyboardListener;
+import Objects.Button;
+import Objects.ButtonListener;
 import Objects.TextureTest;
 import Objects.box;
+import Objects.object;
 
-@SuppressWarnings("unused")
 public class GameController implements KeyboardListener{
 	
 	public Interface inter;
 	public KeyboardController keyboardcontroller;
+	public List<object> objects = new ArrayList<object>();
+	public List<Button> buttons = new ArrayList<Button>();
 	
 	public GameController(Interface inter){
 			
 		init(inter);
 		createObjects();
+		startThreads();
 		keyboardcontroller.addkeyboardlistener(this);
 		
 	}
@@ -31,11 +39,44 @@ public class GameController implements KeyboardListener{
 	
 	public void createObjects(){
 		
-		//new Thread(new box(50,50,inter)).start();
-		//new Thread(new box(300,300,inter)).start();
-		//new Thread(new box(55,60,inter)).start();
-		//new Thread(new TextureTest(100, 100,150,150, "Graphics/icon.png", "png", inter)).start();
-		new Thread(new TextureTest(-150,100,200,130, "Graphics/Trollface.png", "png",inter)).start();
+		buttons.add(new Button(20, 20, "Graphics/icon.png", "png", "button1", inter));
+		objects.add(new box(0,0,1,1,"box1",inter));
+		//objects.add(new TextureTest(100, 100,150,150, "Graphics/Unicorn.jpg", "jpg","Texture1", inter));
+		objects.add(new box(300,300,"box2",inter));
+		objects.add(new box(55,60,"box3",inter));
+		objects.add(new TextureTest(-150,100,200,130, "Graphics/Trollface.png", "png","Texture2",inter));
+		
+	}
+	
+	private void startThreads(){
+		
+		for(object obj : objects){
+			
+			new Thread(obj, obj.getName()).start();
+			
+		}
+		
+		for(Button button : buttons){
+			
+			new Thread(button, button.getName()).start();
+			
+		}
+		
+	}
+	
+	public boolean addButtonListener(ButtonListener buttonListener, String Buttonname){
+		
+		for(Button button : buttons){
+			
+			if(button.getName() == Buttonname){
+				
+				return button.addListener(buttonListener);
+				
+			}
+			
+		}
+		
+		return false;
 		
 	}
 	

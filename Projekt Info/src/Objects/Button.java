@@ -1,5 +1,11 @@
 package Objects;
 
+import static org.lwjgl.opengl.GL11.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
 import Main.Interface;
@@ -7,27 +13,20 @@ import Main.Interface;
 public class Button implements object {
 	
 	int x,y,width,height;
-	String pathnormal, fileformatnormal, pathpressed, fileformatpressed;
+	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
 	Texture texturenormal, texturepressed;
 	Interface inter;
+	boolean pressed;
+	List<ButtonListener> listener = new ArrayList<ButtonListener>();
 	
-	public Button(int x,int y, String path, String fileformat, Interface inter){
+	public Button(int x,int y, String path, String fileformat, String name, Interface inter){
 		
-		this.x = x;
-		this.y = y;
-		this.pathnormal = path;
-		this.pathpressed = path;
-		this.fileformatnormal = fileformat;
-		this.fileformatpressed = fileformat;
-		this.inter = inter;
-		loadtextures();
-		width = texturenormal.getImageWidth();
-		height = texturenormal.getImageHeight();
+		this(x,y,path,fileformat,path,fileformat,name,inter);
 		
 		
 	}
 	
-	public Button(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed, Interface inter){
+	public Button(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter){
 		
 		this.x = x;
 		this.y = y;
@@ -36,6 +35,7 @@ public class Button implements object {
 		this.pathpressed = pathpressed;
 		this.fileformatpressed = fileformatpressed;
 		this.inter = inter;
+		this.name = name;
 		loadtextures();
 		width = texturenormal.getImageWidth();
 		height = texturenormal.getImageHeight();
@@ -43,13 +43,15 @@ public class Button implements object {
 		if(width != texturepressed.getImageWidth() || height != texturepressed.getImageHeight()){
 			
 			texturepressed = texturenormal;
-			System.err.println("Hieght or Width of the pressed texture differs from the height or width of the normal texture");
+			System.err.println("Height or Width of the pressed texture differs from the height or width of the normal texture");
 			
 		}
 		
+		inter.addobject(this);
+		
 	}
 	
-	public void loadtextures(){
+	private void loadtextures(){
 		
 		texturenormal = new getTexture().gettexture(fileformatnormal, pathnormal);
 		texturepressed = new getTexture().gettexture(fileformatpressed, pathpressed);
@@ -59,13 +61,94 @@ public class Button implements object {
 	@Override
 	public void draw() {
 		
+		if(pressed){
+			
+			drawtexture(texturepressed);
+			
+		}else{
+			
+			drawtexture(texturenormal);
+			
+		}
 
+	}
+	
+	public void drawtexture(Texture texture){
+		
+		texture.bind();
+		glColor3f(1, 1, 1);
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+			glTexCoord2f(0,0);
+			glVertex2i(x, y);
+			glTexCoord2f(1,0);
+			glVertex2i(x + width, y);
+			glTexCoord2f(1,1);
+			glVertex2i(x + width, y + height);
+			glTexCoord2f(0,1);
+			glVertex2i(x, y + height);
+		glEnd();
+		
+		
 	}
 
 	@Override
 	public int gety() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return y;
+	}
+	
+	public String getName(){
+		
+		return name;
+		
+	}
+	
+	public boolean addListener(ButtonListener buttonListener){
+		
+		return listener.add(buttonListener);
+		
 	}
 
+	@Override
+	public void run() {
+		
+		while(inter.run){
+		
+			int x = Mouse.getX();
+			int y = Mouse.getY();
+		
+			if(x > this.x && x < this.x + width && y > this.y && y  < this.y + height && Mouse.isButtonDown(0)){
+			
+				System.out.print("Pressed");
+			
+				if(!pressed){
+				
+					pressed = true;
+					onpress();
+			
+				}
+			
+			}else{
+			
+				pressed = false;
+			
+			}
+		}
+		
+		
+	}
+	
+	public void onpress(){
+		
+		System.out.println("Button pressed: " + name);
+		
+		for(ButtonListener buttonListener : listener){
+			
+			buttonListener.onpress();
+			
+		}
+		
+	}
+	
 }

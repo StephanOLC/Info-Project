@@ -4,18 +4,19 @@ import org.newdawn.slick.opengl.Texture;
 import Main.Interface;
 import static org.lwjgl.opengl.GL11.*;
 
-public class TextureTest implements object, Runnable {
+public class TextureTest implements object{
 	
 	int x,y,width,height;
-	String path, fileformat;
+	String path, fileformat,name;
 	Texture texture;
 
-	public TextureTest(int x, int y ,String path,String fileformat,Interface inter ){
+	public TextureTest(int x, int y ,String path,String fileformat, String name,Interface inter ){
 		
 		this.x = x;
 		this.y = y;
 		this.path = path;
 		this.fileformat = fileformat;
+		this.name = name;
 		texture = new getTexture().gettexture(fileformat, path);
 		width = texture.getImageWidth();
 		height = texture.getImageHeight();
@@ -24,7 +25,7 @@ public class TextureTest implements object, Runnable {
 		
 	}
 	
-	public TextureTest(int x, int y ,int width,int height,String path,String fileformat,Interface inter ){
+	public TextureTest(int x, int y ,int width,int height,String path,String fileformat,String name, Interface inter ){
 		
 		this.x = x;
 		this.y = y;
@@ -32,6 +33,7 @@ public class TextureTest implements object, Runnable {
 		this.width = width;
 		this.path = path;
 		this.fileformat = fileformat;
+		this.name = name;
 		texture = new getTexture().gettexture(fileformat, path);
 		
 		inter.addobject(this);
@@ -66,6 +68,13 @@ public class TextureTest implements object, Runnable {
 
 	@Override
 	public void run() {
+		
+	}
+
+	@Override
+	public String getName() {
+		
+		return name;
 		
 	}
 
