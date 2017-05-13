@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class World {
 	
 	private ArrayList<Hitbox> hitboxRegister;
+	private ArrayList<IngameObject> objectList;
 	
 	public World(){
 		hitboxRegister = new ArrayList<Hitbox>();

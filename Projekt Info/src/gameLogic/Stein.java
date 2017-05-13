@@ -1,11 +1,12 @@
 package gameLogic;
 
-public class Stein implements IngameObjekt {
+public class Stein implements IngameObject {
 	private World world;
 	private Vektor position;
 	
-	public Stein(World world){
+	public Stein(Vektor position, World world){
 		this.world = world;
+		this.position = position;
 	}
 
 	public void draw() {
