@@ -16,6 +16,7 @@ public class Stein implements IngameObject {
 	
 	public void tick(){
 		world.detectCollissionType(position);
+		//stuff that object should do in a tick
 	}
 
 }

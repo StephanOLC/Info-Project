@@ -13,6 +13,9 @@ public class World {
 	
 	public void tick(){
 		updateHitboxRegister();
+		for(int i = 0; i < objectList.size(); i++){
+			objectList.get(i).tick();
+		}
 		//Stuff that is supposed to happen in a tick @world
 	}
 	
