@@ -1,4 +1,4 @@
-package World;
+package gameLogic;
 
 import java.lang.Math;
 

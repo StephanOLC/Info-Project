@@ -1,4 +1,4 @@
-package World;
+package gameLogic;
 
 public class Stein implements IngameObjekt {
 	private World world;

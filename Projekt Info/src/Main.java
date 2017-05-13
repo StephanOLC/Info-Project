@@ -1,5 +1,5 @@
 
-import World.Vektor;
+import gameLogic.Vektor;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package World;
+package gameLogic;
 
 public interface IngameObjekt {
 	public void draw();
