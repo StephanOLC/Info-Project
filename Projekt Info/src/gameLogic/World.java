@@ -21,8 +21,8 @@ public class World {
 	
 	//detectCollisionType() gives back the effect of the first hitbox found
 	public int detectCollissionType(Vektor position){ 
-		for(int i = 0; i < hitboxRegister.size(); i++){
-			int result = hitboxRegister.get(i).collisionEffect(position);
+		for(Hitbox hitbox : hitboxRegister){
+			int result = hitbox.collisionEffect(position);
 			if(result != -1){
 				return result;
 			}	
