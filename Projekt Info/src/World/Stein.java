@@ -1,20 +1,20 @@
 package World;
 
-public class Stein implements MovableIngameObjekt {
+public class Stein implements IngameObjekt {
+	private World world;
+	private Vektor position;
 	
 	public Stein(World world){
-		
+		this.world = world;
 	}
 
-	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void isHit() {
-		world.
+	
+	public void tick(){
+		world.detectCollissionType(position);
 	}
 
 }
