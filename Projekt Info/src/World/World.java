@@ -11,7 +11,8 @@ public class World {
 	}
 	
 	public void tick(){
-		
+		updateHitboxRegister();
+		//Stuff that is supposed to happen in a tick @world
 	}
 	
 	//detectCollisionType() gives back the effect of the first hitbox found
