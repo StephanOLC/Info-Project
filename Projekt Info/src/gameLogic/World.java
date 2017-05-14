@@ -34,7 +34,7 @@ public class World {
 	}
 	
 	public void updateHitboxRegister(){
-		for(CircleHitbox hitbox : hitboxRegister){
+		for(Hitbox hitbox : hitboxRegister){
 			if(hitbox.getAndProgLifetime() <= 0){
 				hitboxRegister.remove(hitbox);
 			}
