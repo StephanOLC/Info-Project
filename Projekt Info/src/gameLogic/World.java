@@ -6,9 +6,12 @@ public class World {
 	
 	private ArrayList<Hitbox> hitboxRegister;
 	private ArrayList<IngameObject> objectList;
+	Level level;
 	
 	public World(){
 		hitboxRegister = new ArrayList<Hitbox>();
+		objectList = new ArrayList<IngameObject>();
+		level = new Level(0);
 	}
 	
 	public void tick(){
@@ -40,6 +43,10 @@ public class World {
 	
 	public void addHitbox(Hitbox hitbox){
 		hitboxRegister.add(hitbox);
+	}
+	
+	public void deathNote(IngameObject corpse){
+		objectList.remove(corpse);
 	}
 	
 }
