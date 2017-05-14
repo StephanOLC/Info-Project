@@ -13,8 +13,8 @@ public class World {
 	
 	public void tick(){
 		updateHitboxRegister();
-		for(int i = 0; i < objectList.size(); i++){
-			objectList.get(i).tick();
+		for(IngameObject object : objectList){
+			object.tick();
 		}
 		//Stuff that is supposed to happen in a tick @world
 	}
@@ -31,9 +31,9 @@ public class World {
 	}
 	
 	public void updateHitboxRegister(){
-		for(int i = 0; i < hitboxRegister.size(); i++){
-			if(hitboxRegister.get(i).getAndProgLifetime() <= 0){
-				hitboxRegister.remove(i);
+		for(Hitbox hitbox : hitboxRegister){
+			if(hitbox.getAndProgLifetime() <= 0){
+				hitboxRegister.remove(hitbox);
 			}
 		}
 	}
