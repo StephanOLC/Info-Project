@@ -34,14 +34,14 @@ public class World {
 	}
 	
 	public void updateHitboxRegister(){
-		for(Hitbox hitbox : hitboxRegister){
+		for(CircleHitbox hitbox : hitboxRegister){
 			if(hitbox.getAndProgLifetime() <= 0){
 				hitboxRegister.remove(hitbox);
 			}
 		}
 	}
 	
-	public void addHitbox(Hitbox hitbox){
+	public void addHitbox(CircleHitbox hitbox){
 		hitboxRegister.add(hitbox);
 	}
 	

@@ -7,8 +7,9 @@ public class Level implements IngameObject {
 	public Level(int level){
 		this.level = level;
 		switch(level){
-		case 0: //hitboxes for demolevel boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns
+		case 0: //spawns hero @start-position,sets up hitboxes for demo-level boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns
 			break;
+			
 		}
 	}
 
@@ -17,13 +18,18 @@ public class Level implements IngameObject {
 		switch(level){
 		case 0: //demo level graphics
 			break;
+			
 		}
 
 	}
 
 	@Override
 	public void tick() {
-		// leave empty or level events, like paths getting blocked after a while or terrain getting covered in fire(damage hitboxes)
+		switch(level){
+		case 0: // leave empty or level events, like paths getting blocked after a while or terrain getting covered in fire(damage hitboxes)
+			break;
+			
+		}
 
 	}
 
