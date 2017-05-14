@@ -1,4 +1,4 @@
-package Inputs;
+package Interfaces;
 
 public interface KeyboardListener {
 	

@@ -17,7 +17,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
 import Inputs.MouseController;
-import Objects.object;
+import Interfaces.object;
 
 public class Interface {
 	

@@ -1,16 +1,18 @@
 package Objects;
 
 import org.newdawn.slick.opengl.Texture;
+
+import Interfaces.object;
 import Main.Interface;
 import static org.lwjgl.opengl.GL11.*;
 
-public class TextureTest implements object{
+public class TextureObject implements object{
 	
 	int x,y,width,height;
 	String path, fileformat,name;
 	Texture texture;
 
-	public TextureTest(int x, int y ,String path,String fileformat, String name,Interface inter ){
+	public TextureObject(int x, int y ,String path,String fileformat, String name,Interface inter ){
 		
 		this.x = x;
 		this.y = y;
@@ -25,7 +27,7 @@ public class TextureTest implements object{
 		
 	}
 	
-	public TextureTest(int x, int y ,int width,int height,String path,String fileformat,String name, Interface inter ){
+	public TextureObject(int x, int y ,int width,int height,String path,String fileformat,String name, Interface inter ){
 		
 		this.x = x;
 		this.y = y;

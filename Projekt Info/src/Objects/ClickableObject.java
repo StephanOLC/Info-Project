@@ -8,27 +8,29 @@ import java.util.List;
 import org.newdawn.slick.opengl.Texture;
 
 import Inputs.MouseController;
+import Interfaces.ClickListener;
+import Interfaces.object;
 import Main.GameController;
 import Main.Interface;
 
-public class Button implements object {
+public class ClickableObject implements object {
 	
 	int x,y,width,height;
 	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
 	Texture texturenormal, texturepressed;
 	Interface inter;
 	boolean pressed;
-	List<ButtonListener> listener = new ArrayList<ButtonListener>();
+	List<ClickListener> listener = new ArrayList<ClickListener>();
 	MouseController mousecontroller;
 	
-	public Button(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
+	public ClickableObject(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
 		
 		this(x,y,path,fileformat,path,fileformat,name,inter,controller);
 		
 		
 	}
 	
-	public Button(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter, GameController controller){
+	public ClickableObject(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter, GameController controller){
 		
 		this.x = x;
 		this.y = y;
@@ -107,9 +109,9 @@ public class Button implements object {
 		
 	}
 	
-	public boolean addListener(ButtonListener buttonListener){
+	public boolean addListener(ClickListener clickListener){
 		
-		return listener.add(buttonListener);
+		return listener.add(clickListener);
 		
 	}
 
@@ -145,9 +147,9 @@ public class Button implements object {
 		
 		System.out.println("Button pressed: " + name);
 		
-		for(ButtonListener buttonListener : listener){
+		for(ClickListener clickListener : listener){
 			
-			buttonListener.onpress();
+			clickListener.onpress(getName());
 			
 		}
 		

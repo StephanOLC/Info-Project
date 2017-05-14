@@ -1,4 +1,4 @@
-package Objects;
+package Interfaces;
 
 public interface object extends Runnable{
 	

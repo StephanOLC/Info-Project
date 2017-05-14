@@ -6,13 +6,13 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import Inputs.KeyboardController;
-import Inputs.KeyboardListener;
 import Inputs.MouseController;
-import Objects.Button;
-import Objects.ButtonListener;
-import Objects.TextureTest;
-import Objects.box;
-import Objects.object;
+import Interfaces.ClickListener;
+import Interfaces.KeyboardListener;
+import Interfaces.object;
+import Objects.ClickableObject;
+import Objects.TextureObject;
+import unusedtestclasses.box;
 
 public class GameController implements KeyboardListener{
 	
@@ -20,7 +20,7 @@ public class GameController implements KeyboardListener{
 	public KeyboardController keyboardcontroller;
 	public MouseController mousecontroller;
 	public List<object> objects = new ArrayList<object>();
-	public List<Button> buttons = new ArrayList<Button>();
+	public List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
 	
 	public GameController(Interface inter){
 			
@@ -43,12 +43,12 @@ public class GameController implements KeyboardListener{
 	
 	public void createObjects(){
 		
-		buttons.add(new Button(20, 20, "Graphics/icon.png", "png", "button1", inter,this));
+		clickableObjects.add(new ClickableObject(20, 20, "Graphics/icon.png", "png", "button1", inter,this));
 		objects.add(new box(0,0,1,1,"box1",inter));
 		//objects.add(new TextureTest(100, 100,150,150, "Graphics/Unicorn.jpg", "jpg","Texture1", inter));
 		objects.add(new box(300,300,"box2",inter));
 		objects.add(new box(55,60,"box3",inter));
-		objects.add(new TextureTest(-150,100,200,130, "Graphics/Trollface.png", "png","Texture2",inter));
+		objects.add(new TextureObject(-150,100,200,130, "Graphics/Trollface.png", "png","Texture2",inter));
 		
 	}
 	
@@ -60,21 +60,21 @@ public class GameController implements KeyboardListener{
 			
 		}
 		
-		for(Button button : buttons){
+		for(ClickableObject clickableObject : clickableObjects){
 			
-			new Thread(button, button.getName()).start();
+			new Thread(clickableObject, clickableObject.getName()).start();
 			
 		}
 		
 	}
 	
-	public boolean addButtonListener(ButtonListener buttonListener, String Buttonname){
+	public boolean addClickListener(ClickListener clickListener, String Buttonname){
 		
-		for(Button button : buttons){
+		for(ClickableObject clickableObject : clickableObjects){
 			
-			if(button.getName() == Buttonname){
+			if(clickableObject.getName() == Buttonname){
 				
-				return button.addListener(buttonListener);
+				return clickableObject.addListener(clickListener);
 				
 			}
 			

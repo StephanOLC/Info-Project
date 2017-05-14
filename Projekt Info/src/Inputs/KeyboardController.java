@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
+
+import Interfaces.KeyboardListener;
 import Main.Interface;
 
 public class KeyboardController implements Runnable{
