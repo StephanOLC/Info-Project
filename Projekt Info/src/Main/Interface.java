@@ -12,23 +12,24 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
+import Inputs.MouseController;
 import Objects.object;
 
 public class Interface {
 	
 	int height = 480;
 	int width = 640;
-	float movex,movey;
+	float movex,movey,transx,transy;
 	List<object> objects = new ArrayList<object>();
 	List<object> insert = new ArrayList<object>();
 	object back;
 	public boolean run;
 	boolean closerequested;
+	MouseController mousecontroller;
 	
 	public Interface(){
 		
@@ -78,12 +79,19 @@ public class Interface {
 		
 	}
 	
+	public void setMouseController(MouseController mousecontroller){
+		
+		this.mousecontroller = mousecontroller;
+		
+	}
+	
 	public void run() {
 		
 		while(!Display.isCloseRequested() && !closerequested){
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
+			updateMouse();
 			getmovement();
 			moveCamera();
 			draw();
@@ -93,6 +101,14 @@ public class Interface {
 		}
 		
 		close();
+		
+	}
+	
+	public void updateMouse(){
+		
+		mousecontroller.settrans(transx, transy);
+		mousecontroller.refresh();
+		
 	}
 	
 	private void close(){
@@ -122,19 +138,22 @@ public class Interface {
 	}
 	
 	
-	public void moveCamera(){
+	private void moveCamera(){
+		
+		transx -= movex;
+		transy -= movey;
 		
 		glTranslatef(movex, movey, 0);
 		
 		
 	}
 	
-	public void getmovement(){
+	private void getmovement(){
 		
-		if(Mouse.isButtonDown(0)){
+		if(mousecontroller.isleftdown()){
 			
-			movex = Mouse.getDX();
-			movey = -Mouse.getDY();
+			movex = mousecontroller.getdynamicx();
+			movey = -mousecontroller.getdynamicy();
 			
 		}else{
 			
@@ -165,7 +184,7 @@ public class Interface {
 		
 	}
 	
-	public void draw(){
+	private void draw(){
 		
 		if(back != null){
 			

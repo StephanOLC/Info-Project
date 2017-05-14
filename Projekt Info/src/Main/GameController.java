@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 
 import Inputs.KeyboardController;
 import Inputs.KeyboardListener;
+import Inputs.MouseController;
 import Objects.Button;
 import Objects.ButtonListener;
 import Objects.TextureTest;
@@ -17,6 +18,7 @@ public class GameController implements KeyboardListener{
 	
 	public Interface inter;
 	public KeyboardController keyboardcontroller;
+	public MouseController mousecontroller;
 	public List<object> objects = new ArrayList<object>();
 	public List<Button> buttons = new ArrayList<Button>();
 	
@@ -34,12 +36,14 @@ public class GameController implements KeyboardListener{
 		this.inter = inter;
 		keyboardcontroller = new KeyboardController(inter);
 		new Thread(keyboardcontroller).start();
+		mousecontroller = new MouseController(inter);
+		inter.setMouseController(mousecontroller);
 		
 	}
 	
 	public void createObjects(){
 		
-		buttons.add(new Button(20, 20, "Graphics/icon.png", "png", "button1", inter));
+		buttons.add(new Button(20, 20, "Graphics/icon.png", "png", "button1", inter,this));
 		objects.add(new box(0,0,1,1,"box1",inter));
 		//objects.add(new TextureTest(100, 100,150,150, "Graphics/Unicorn.jpg", "jpg","Texture1", inter));
 		objects.add(new box(300,300,"box2",inter));
@@ -77,6 +81,12 @@ public class GameController implements KeyboardListener{
 		}
 		
 		return false;
+		
+	}
+	
+	public MouseController getMouseController(){
+		
+		return mousecontroller;
 		
 	}
 	

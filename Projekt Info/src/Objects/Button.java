@@ -5,9 +5,10 @@ import static org.lwjgl.opengl.GL11.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
+import Inputs.MouseController;
+import Main.GameController;
 import Main.Interface;
 
 public class Button implements object {
@@ -18,15 +19,16 @@ public class Button implements object {
 	Interface inter;
 	boolean pressed;
 	List<ButtonListener> listener = new ArrayList<ButtonListener>();
+	MouseController mousecontroller;
 	
-	public Button(int x,int y, String path, String fileformat, String name, Interface inter){
+	public Button(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
 		
-		this(x,y,path,fileformat,path,fileformat,name,inter);
+		this(x,y,path,fileformat,path,fileformat,name,inter,controller);
 		
 		
 	}
 	
-	public Button(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter){
+	public Button(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter, GameController controller){
 		
 		this.x = x;
 		this.y = y;
@@ -48,6 +50,7 @@ public class Button implements object {
 		}
 		
 		inter.addobject(this);
+		mousecontroller = controller.getMouseController();
 		
 	}
 	
@@ -115,12 +118,10 @@ public class Button implements object {
 		
 		while(inter.run){
 		
-			int x = Mouse.getX();
-			int y = Mouse.getY();
+			int x = (int) mousecontroller.getabsolutex();
+			int y = (int) mousecontroller.getabsolutey();
 		
-			if(x > this.x && x < this.x + width && y > this.y && y  < this.y + height && Mouse.isButtonDown(0)){
-			
-				System.out.print("Pressed");
+			if(x > this.x && x < this.x + width && y > this.y && y  < this.y + height && mousecontroller.isleftdown()){
 			
 				if(!pressed){
 				
@@ -134,6 +135,7 @@ public class Button implements object {
 				pressed = false;
 			
 			}
+			
 		}
 		
 		
