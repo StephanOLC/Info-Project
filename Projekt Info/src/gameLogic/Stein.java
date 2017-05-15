@@ -24,7 +24,7 @@ public class Stein implements IngameObject {
 				case 0: world.deathNote(this);
 				break;
 			
-				default: healthPoints = healthPoints - effect;
+				default: healthPoints = healthPoints - effect; if(healthPoints <= 0) world.deathNote(this);
 				break;
 			}
 		}
