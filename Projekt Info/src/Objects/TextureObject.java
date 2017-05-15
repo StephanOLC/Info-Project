@@ -65,6 +65,32 @@ public class TextureObject implements object{
 		glRotatef(-rotation,0,0,1);
 		
 	}
+	
+	public void setPosition(int x, int y){
+		
+		this.x = x;
+		this.y = y;
+		
+	}
+	
+	public void setOutbounds(int width, int height){
+		
+		this.width = width;
+		this.height = height;
+		
+	}
+	
+	public void setrotation(float rotation){
+		
+		this.rotation = rotation;
+		
+	}
+	
+	public void newTexture(String path, String fileformat){
+		
+		texture = new getTexture().gettexture(fileformat, path);
+		
+	}
 
 	@Override
 	public int gety() {
@@ -72,9 +98,34 @@ public class TextureObject implements object{
 		return y;
 		
 	}
-
-	@Override
-	public void run() {
+	
+	public int getx(){
+		
+		return x;
+		
+	}
+	
+	public int getwidth(){
+		
+		return width;
+		
+	}
+	
+	public int getheight(){
+		
+		return height;
+		
+	}
+	
+	public float getrotation(){
+		
+		return rotation;
+		
+	}
+	
+	public Texture gettexture(){
+		
+		return texture;
 		
 	}
 
@@ -82,6 +133,11 @@ public class TextureObject implements object{
 	public String getName() {
 		
 		return name;
+		
+	}
+
+	@Override
+	public void run() {
 		
 	}
 

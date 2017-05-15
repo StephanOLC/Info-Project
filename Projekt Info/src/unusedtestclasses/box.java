@@ -39,9 +39,9 @@ public class box implements object {
 		glColor3f(colorRed,colorBlue,colorGreen);
 		glBegin(GL_QUADS);
 			glVertex2i(x,y);
-			glVertex2i(x + width, y);
+			glVertex2i(x + width, y + (int) 0.5 * height);
 			glVertex2i(x + width, y + height);
-			glVertex2i(x,y+height);
+			glVertex2i(x ,y+height);
 		glEnd();	
 		
 	}
