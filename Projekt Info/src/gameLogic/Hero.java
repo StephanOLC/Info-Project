@@ -32,9 +32,6 @@ public class Hero implements IngameObject {
 	public void collision(ArrayList<Integer> collisions){
 		for(int effect : collisions){
 			switch (effect){
-			
-				case -1: break;
-			
 				case 0: position = previousPosition; //resets character (referred to as "char") to its old position in case it runs into a wall
 				break;
 				

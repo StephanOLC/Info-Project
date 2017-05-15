@@ -14,6 +14,7 @@ public class Main {
 		System.out.println("Vektor a plus Vektor b is: x = " + a.plus(b).getX() + " y = " + a.plus(b).getY() + " length = " + a.plus(b).length());
 		
 		World disneyland = new World();
+		disneyland.addHitbox(new SquareHitbox(new Vektor(1,1), 2, 2, 100, 1));
 		disneyland.addHitbox(new CircleHitbox(new Vektor(1,1), 2, 100, 1));
 		disneyland.updateHitboxRegister();
 		System.out.println("Collision type for 'a' with CircleHitbox is: " + disneyland.detectCollissionType(a));

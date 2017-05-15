@@ -21,9 +21,6 @@ public class Stein implements IngameObject {
 	public void collision(ArrayList<Integer> collisions){
 		for(int effect : collisions){
 			switch (effect){
-			
-				case -1: break;
-			
 				case 0: world.deathNote(this);
 				break;
 			
