@@ -1,6 +1,6 @@
 package Interfaces;
 
-public interface object extends Runnable{
+public interface Drawableobject extends Runnable{
 	
 	public void draw();
 	public int gety();

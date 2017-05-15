@@ -2,11 +2,11 @@ package Objects;
 
 import org.newdawn.slick.opengl.Texture;
 
-import Interfaces.object;
+import Interfaces.Drawableobject;
 import Main.Interface;
 import static org.lwjgl.opengl.GL11.*;
 
-public class TextureObject implements object{
+public class TextureObject implements Drawableobject{
 	
 	int x,y,width,height;
 	float rotation;
@@ -25,7 +25,7 @@ public class TextureObject implements object{
 		height = texture.getImageHeight();
 		rotation = 0;
 		
-		inter.addobject(this);
+		inter.addDrawableobject(this);
 		
 	}
 	
@@ -41,7 +41,7 @@ public class TextureObject implements object{
 		this.name = name;
 		texture = new getTexture().gettexture(fileformat, path);
 		
-		inter.addobject(this);
+		inter.addDrawableobject(this);
 		
 	}
 	
@@ -54,13 +54,13 @@ public class TextureObject implements object{
 		glRotatef(rotation, 0, 0, 1);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0,0);
-			glVertex2f(x - 0.5f*width, y-height);
+			glVertex2f(x - 0.5f*width, y-0.5f*height);
 			glTexCoord2f(1,0);
-			glVertex2f(x + 0.5f*width, y- height);
+			glVertex2f(x + 0.5f*width, y- 0.5f*height);
 			glTexCoord2f(1,1);
-			glVertex2f(x + 0.5f*width, y);
+			glVertex2f(x + 0.5f*width, y + 0.5f*height);
 			glTexCoord2f(0,1);
-			glVertex2f(x - 0.5f*width, y);
+			glVertex2f(x - 0.5f*width, y + 0.5f*height);
 		glEnd();	
 		glRotatef(-rotation,0,0,1);
 		

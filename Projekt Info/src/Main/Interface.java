@@ -17,24 +17,25 @@ import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
 import Inputs.MouseController;
-import Interfaces.object;
+import Interfaces.Drawableobject;
 
 public class Interface {
 	
 	int height = 480;
 	int width = 640;
 	float movex,movey,transx,transy;
-	List<object> objects = new ArrayList<object>();
-	List<object> insert = new ArrayList<object>();
-	object back;
+	List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
+	List<Drawableobject> insert = new ArrayList<Drawableobject>();
+	Drawableobject back;
 	public boolean run;
-	boolean closerequested;
+	boolean closerequested, cameramovement;
 	MouseController mousecontroller;
 	
 	public Interface(){
 		
 		run = true;
 		closerequested = false;
+		cameramovement = true;
 		init();
 		
 	}
@@ -140,10 +141,14 @@ public class Interface {
 	
 	private void moveCamera(){
 		
-		transx -= movex;
-		transy -= movey;
+		if(cameramovement){
+			
+			transx -= movex;
+			transy -= movey;
 		
-		glTranslatef(movex, movey, 0);
+			glTranslatef(movex, movey, 0);
+			
+		}
 		
 		
 	}
@@ -191,40 +196,40 @@ public class Interface {
 			back.draw();
 		}
 		
-		objects.sort(new Sorter());
+		Drawableobjects.sort(new Sorter());
 		
-		for(object obj : objects){
+		for(Drawableobject obj : Drawableobjects){
 			
 			obj.draw();
 			
 		}
 		
-		for(object obj : insert){
+		for(Drawableobject obj : insert){
 			
-			objects.add(obj);
+			Drawableobjects.add(obj);
 			
 		}
 		
-		insert = new ArrayList<object>();
+		insert = new ArrayList<Drawableobject>();
 		
 	}
 
-	public void addobject(object obj){
+	public void addDrawableobject(Drawableobject obj){
 		
 		insert.add(obj);
 		
 	}
 
-	public void setbackground(object obj){
+	public void setbackground(Drawableobject obj){
 		
 		back = obj;
 		
 	}
 
-	public static class Sorter implements Comparator<object>{
+	public static class Sorter implements Comparator<Drawableobject>{
 	
 		@Override
-		public int compare(object obj1, object obj2) {
+		public int compare(Drawableobject obj1, Drawableobject obj2) {
 			
 			return obj1.gety()- obj2.gety();
 			

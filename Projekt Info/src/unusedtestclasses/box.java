@@ -4,11 +4,11 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.Random;
 
-import Interfaces.object;
+import Interfaces.Drawableobject;
 import Main.Interface;
 
 
-public class box implements object {
+public class box implements Drawableobject {
 	
 	public int x,y,height,width;
 	public float colorRed, colorBlue,colorGreen;
@@ -28,7 +28,7 @@ public class box implements object {
 		this.height = height;
 		this.name = name;
 		randomize();
-		inter.addobject((object) this);
+		inter.addDrawableobject((Drawableobject) this);
 		
 	}
 	

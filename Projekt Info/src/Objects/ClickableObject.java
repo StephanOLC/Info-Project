@@ -9,11 +9,11 @@ import org.newdawn.slick.opengl.Texture;
 
 import Inputs.MouseController;
 import Interfaces.ClickListener;
-import Interfaces.object;
+import Interfaces.Drawableobject;
 import Main.GameController;
 import Main.Interface;
 
-public class ClickableObject implements object {
+public class ClickableObject implements Drawableobject {
 	
 	int x,y,width,height;
 	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
@@ -51,7 +51,7 @@ public class ClickableObject implements object {
 			
 		}
 		
-		inter.addobject(this);
+		inter.addDrawableobject(this);
 		mousecontroller = controller.getMouseController();
 		
 	}
@@ -96,13 +96,43 @@ public class ClickableObject implements object {
 		
 		
 	}
-
+	
+	public int getx(){
+		
+		return x;
+		
+	}
+	
 	@Override
 	public int gety() {
 		
 		return y;
 	}
 	
+	public int getwidth(){
+		
+		return width;
+		
+	}
+	
+	public int getheight(){
+		
+		return height;
+		
+	}
+	
+	public Texture getTexture(){
+		
+		return texturenormal;
+		
+	}
+	
+	public Texture getTexturepressed(){
+		
+		return texturepressed;
+		
+	}
+
 	public String getName(){
 		
 		return name;
