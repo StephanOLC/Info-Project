@@ -1,5 +1,7 @@
 package gameLogic;
 
+import java.util.ArrayList;
+
 public class Stein implements IngameObject {
 	private World world;
 	private Vektor position;
@@ -16,14 +18,23 @@ public class Stein implements IngameObject {
 
 	}
 	
-	public void tick(){
-		int effect = world.detectCollissionType(position);
-		switch (effect){
-		case 0: world.deathNote(this);
-		break;
-		default: healthPoints = healthPoints - effect;
-		break;
+	public void collision(ArrayList<Integer> collisions){
+		for(int effect : collisions){
+			switch (effect){
+			
+				case -1: break;
+			
+				case 0: world.deathNote(this);
+				break;
+			
+				default: healthPoints = healthPoints - effect;
+				break;
+			}
 		}
+	}
+	
+	public void tick(){
+		collision(world.detectCollissionType(position));
 		//stuff that object should do in a tick
 	}
 

@@ -22,15 +22,16 @@ public class World {
 		//Stuff that is supposed to happen in a tick @world
 	}
 	
-	//detectCollisionType() gives back the effect of the first hitbox found
-	public int detectCollissionType(Vektor position){ 
+	//detectCollisionType() gives back the effect of every hitbox that collides
+	public ArrayList<Integer> detectCollissionType(Vektor position){
+		ArrayList<Integer> output = new ArrayList<Integer>();
 		for(Hitbox hitbox : hitboxRegister){
 			int result = hitbox.collisionEffect(position);
 			if(result != -1){
-				return result;
+				output.add(result);
 			}	
 		}
-		return  -1;
+		return  output;
 	}
 	
 	public void updateHitboxRegister(){

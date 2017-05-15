@@ -1,5 +1,7 @@
 package gameLogic;
 
+import java.util.ArrayList;
+
 public class Level implements IngameObject {
 	
 	int level;
@@ -32,5 +34,7 @@ public class Level implements IngameObject {
 		}
 
 	}
+	
+	public void collision(ArrayList<Integer> collisions){}
 
 }

@@ -1,5 +1,7 @@
 package gameLogic;
 
+import java.util.ArrayList;
+
 public class Hero implements IngameObject {
 	
 	private World world;
@@ -26,18 +28,26 @@ public class Hero implements IngameObject {
 		}
 
 	}
+	
+	public void collision(ArrayList<Integer> collisions){
+		for(int effect : collisions){
+			switch (effect){
+			
+				case -1: break;
+			
+				case 0: position = previousPosition; //resets character (referred to as "char") to its old position in case it runs into a wall
+				break;
+				
+				default: healthPoints = healthPoints - effect; if(healthPoints <= 0) status = 0;
+				break;
+			}
+		}
+	}
 
 	@Override
 	public void tick() {
-		int effect = world.detectCollissionType(position);
-		switch (effect){
-		case 0: position = previousPosition; //resets character (referred to as "char") to its old position in case it runs into a wall
-			break;
-			
-		default: healthPoints = healthPoints - effect;
-				 if(healthPoints <= 0) status = 0;
-			break;
-		}
+		collision(world.detectCollissionType(position));
+		
 		//stuff that hero should do in a tick
 
 	}
