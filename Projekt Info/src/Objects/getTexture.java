@@ -18,11 +18,15 @@ public class getTexture {
 	public Texture gettexture(String fileformat, String path){
 		
 		try {
+			
 			return TextureLoader.getTexture(fileformat, new FileInputStream(new File(path)));
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
+		
 		return null;
 	}
 	

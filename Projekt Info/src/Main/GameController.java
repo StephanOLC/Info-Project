@@ -44,11 +44,13 @@ public class GameController implements KeyboardListener{
 	public void createObjects(){
 		
 		clickableObjects.add(new ClickableObject(20, 20, "Graphics/icon.png", "png", "button1", inter,this));
-		objects.add(new box(0,0,1,1,"box1",inter));
 		//objects.add(new TextureTest(100, 100,150,150, "Graphics/Unicorn.jpg", "jpg","Texture1", inter));
 		objects.add(new box(300,300,"box2",inter));
 		objects.add(new box(55,60,"box3",inter));
-		objects.add(new TextureObject(-150,100,200,130, "Graphics/Trollface.png", "png","Texture2",inter));
+		objects.add(new TextureObject(0,0,200,130,0, "Graphics/Trollface.png", "png","Texture2",inter));
+		objects.add(new TextureObject(-150,100,200,130,90f, "Graphics/Trollface.png", "png","Texture2",inter));
+		objects.add(new box(0,0,1,1,"box1",inter));
+		
 		
 	}
 	
