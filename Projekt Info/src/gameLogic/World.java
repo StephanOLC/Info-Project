@@ -48,6 +48,14 @@ public class World {
 		hitboxRegister.add(hitbox);
 	}
 	
+	public void spawn(String name, int x, int y){
+		switch(name){
+			case "arakhMummy":
+			case "arakh": objectList.add(new arakhMummy(new Vektor(x, y), this));
+				break;
+		}
+	}
+	
 	public void deathNote(IngameObject corpse){
 		objectList.remove(corpse);
 	}
