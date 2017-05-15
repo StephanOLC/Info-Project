@@ -41,7 +41,7 @@ public class World {
 		}
 	}
 	
-	public void addHitbox(CircleHitbox hitbox){
+	public void addHitbox(Hitbox hitbox){
 		hitboxRegister.add(hitbox);
 	}
 	
