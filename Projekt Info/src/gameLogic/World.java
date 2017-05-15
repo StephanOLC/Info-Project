@@ -34,11 +34,13 @@ public class World {
 	}
 	
 	public void updateHitboxRegister(){
+		ArrayList<Hitbox> removals = new ArrayList<Hitbox>();
 		for(Hitbox hitbox : hitboxRegister){
 			if(hitbox.getAndProgLifetime() <= 0){
-				hitboxRegister.remove(hitbox);
+				removals.add(hitbox);
 			}
 		}
+		hitboxRegister.removeAll(removals);
 	}
 	
 	public void addHitbox(Hitbox hitbox){
