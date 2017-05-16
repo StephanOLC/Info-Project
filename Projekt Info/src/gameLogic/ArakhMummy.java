@@ -9,7 +9,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		this.world = world;
 		healthPoints = 500;
 		speed = 5;
-		status = 1;
+		status = 1; //1:Idle , 2&3:running , 4:jumping , 5:attacking
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		timer++;
 		
 		//now actions ->
-		if(status != 0) jumpAttack(new Vektor(10,10));
+		if(world.getClosest('n', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
 		
 	}
 
