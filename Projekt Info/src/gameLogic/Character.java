@@ -11,12 +11,24 @@ public abstract class Character {
 	protected int status;
 	protected int timer;
 	protected char team;
+	protected boolean alreadyMoved;
 	
 	abstract void collision(ArrayList<Integer> effects);
 	
-	protected Vektor to(Vektor target){
+	protected Vektor goTo(Vektor target){
 		Vektor way = position.connectingTo(target);
 		return way.scale(speed/(way.length()));
+	}
+	
+	protected Vektor goAwayFrom(Vektor target){
+		Vektor way = target.connectingTo(position);
+		return way.scale(speed/(way.length()));
+	}
+	
+	protected void movement(Vektor direction){
+		if(!alreadyMoved){
+			position.plus(direction);
+		}
 	}
 	
 }

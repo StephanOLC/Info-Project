@@ -8,8 +8,18 @@ public class arakhMummy extends Character implements IngameObject {
 		this.position = position;
 		this.world = world;
 		healthPoints = 500;
+		speed = 5;
 	}
-
+	
+	@Override
+	public Vektor getPosition() {
+		return position;
+	}
+	
+	public char getTeam(){
+		return 'e';
+	}
+	
 	@Override
 	public void draw() {
 		switch(status){
@@ -20,8 +30,13 @@ public class arakhMummy extends Character implements IngameObject {
 
 	@Override
 	public void tick() {
+		//collision detection first, movement second, attacking last
 		collision(world.detectCollissionType(position));
+		alreadyMoved = false;
 		
+		//now actions ->
+		
+		jumpAttack(world.getClosest('n', position));
 	}
 
 	public void collision(ArrayList<Integer> collisions) {
@@ -35,14 +50,26 @@ public class arakhMummy extends Character implements IngameObject {
 			}
 		}
 	}
-
-	@Override
-	public Vektor getPosition() {
-		return position;
+	
+	private Vektor jumpTo(Vektor target){
+		Vektor way = position.connectingTo(target);
+		return way.scale(3*speed/(way.length()));
 	}
 	
-	public char getTeam(){
-		return 'e';
+	private Vektor rollAway(Vektor target){
+		Vektor way = target.connectingTo(position);
+		return way.scale(2*speed/(way.length()));
 	}
-
+	
+	private void jumpAttack(Vektor target){
+		if(position.connectingTo(target).length() < 6*speed){
+			movement(jumpTo(target));
+		}
+		else if(position.connectingTo(target).length() < speed){
+			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), speed - 1, 10000, 1));
+		}
+		else{
+			movement(goTo(target));
+		}
+	}
 }
