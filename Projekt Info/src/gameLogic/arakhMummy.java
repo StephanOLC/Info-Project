@@ -2,17 +2,12 @@ package gameLogic;
 
 import java.util.ArrayList;
 
-public class arakhMummy implements IngameObject {
-	
-	private Vektor position;
-	private World world;
-	private Vektor previousPosition;
-	private int healthPoints;
-	private int status = 1;
+public class arakhMummy extends Character implements IngameObject {
 	
 	public arakhMummy(Vektor position, World world){
 		this.position = position;
 		this.world = world;
+		healthPoints = 500;
 	}
 
 	@Override

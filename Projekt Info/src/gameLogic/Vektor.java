@@ -34,9 +34,8 @@ public class Vektor {
 		return new Vektor(x + add.getX(), y + add.getY());
 	}
 	
-	public void scale(int scale){
-		x = x * scale;
-		y = y * scale;
+	public Vektor scale(double scale){
+		return new Vektor((int) Math.rint(x * scale), (int) Math.rint(y * scale));
 	}
 	
 	public Vektor connectingTo(Vektor to){
