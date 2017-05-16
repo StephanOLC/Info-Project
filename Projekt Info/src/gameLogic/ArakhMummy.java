@@ -2,9 +2,9 @@ package gameLogic;
 
 import java.util.ArrayList;
 
-public class arakhMummy extends Character implements IngameObject {
+public class ArakhMummy extends Character implements IngameObject {
 	
-	public arakhMummy(Vektor position, World world){
+	public ArakhMummy(Vektor position, World world){
 		this.position = position;
 		this.world = world;
 		healthPoints = 500;
@@ -30,13 +30,14 @@ public class arakhMummy extends Character implements IngameObject {
 
 	@Override
 	public void tick() {
+		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints);
 		//collision detection first, movement second, attacking last
 		collision(world.detectCollissionType(position));
 		alreadyMoved = false;
 		
 		//now actions ->
+		if(world.getClosest('n', position) != null) movement(goTo(world.getClosest('n', position)));
 		
-		jumpAttack(world.getClosest('n', position));
 	}
 
 	public void collision(ArrayList<Integer> collisions) {

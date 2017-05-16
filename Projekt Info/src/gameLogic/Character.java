@@ -27,7 +27,7 @@ public abstract class Character {
 	
 	protected void movement(Vektor direction){
 		if(!alreadyMoved){
-			position.plus(direction);
+			position = position.plus(direction);
 		}
 	}
 	

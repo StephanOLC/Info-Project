@@ -31,8 +31,10 @@ public class Stein implements IngameObject {
 	}
 	
 	public void tick(){
+		System.out.println("stein - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints);
 		collision(world.detectCollissionType(position));
 		//stuff that object should do in a tick
+		
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class Stein implements IngameObject {
 	@Override
 	public Vektor getPosition() {
 		// TODO Auto-generated method stub
-		return null;
+		return position;
 	}
 
 }

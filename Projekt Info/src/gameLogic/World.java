@@ -6,11 +6,13 @@ public class World {
 	
 	private ArrayList<Hitbox> hitboxRegister;
 	private ArrayList<IngameObject> objectList;
+	ArrayList<IngameObject> deathNote;
 	Level level;
 	
 	public World(){
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
+		deathNote = new ArrayList<IngameObject>();
 		level = new Level(0);
 	}
 	
@@ -19,6 +21,7 @@ public class World {
 		for(IngameObject object : objectList){
 			object.tick();
 		}
+		objectList.removeAll(deathNote);
 		//Stuff that is supposed to happen in a tick @world
 	}
 	
@@ -49,30 +52,36 @@ public class World {
 	}
 	
 	public Vektor getClosest(char team, Vektor position){
+		ArrayList<Vektor> targets = new ArrayList<Vektor>();
 		Vektor closest = null;
 		for(IngameObject object : objectList){
 			if(object.getTeam() == team){
-				closest = object.getPosition();
+				targets.add(object.getPosition());
 			}
 		}
-		for(IngameObject object : objectList){
-			if(object.getTeam() == team && position.connectingTo(object.getPosition()).length() < position.connectingTo(closest).length()){
-				closest = object.getPosition();
+			closest = targets.get(0);
+			for(Vektor targetPosition : targets){
+				if(position.connectingTo(targetPosition).length() < position.connectingTo(closest).length()){
+					closest = targetPosition;
+				}
 			}
-		}
-		return closest;
+			return closest;
 	}
 	
 	public void spawn(String name, int x, int y){
 		switch(name){
-			case "arakhMummy":
-			case "arakh": objectList.add(new arakhMummy(new Vektor(x, y), this));
+			case "ArakhMummy":
+			case "Arakh": objectList.add(new ArakhMummy(new Vektor(x, y), this));
 				break;
+				
+			case "Stein": objectList.add(new Stein(new Vektor(x, y), this));
+				break;
+			
 		}
 	}
 	
 	public void deathNote(IngameObject corpse){
-		objectList.remove(corpse);
+		deathNote.add(corpse);
 	}
 	
 }

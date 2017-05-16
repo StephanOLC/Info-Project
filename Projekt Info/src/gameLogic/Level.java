@@ -35,12 +35,12 @@ public class Level implements IngameObject {
 
 	@Override
 	public char getTeam() {
-		return 0;
+		return 'w';
 	}
 
 	@Override
 	public Vektor getPosition() {
-		return null;
+		return new Vektor(0, 0);
 	}
 
 }
