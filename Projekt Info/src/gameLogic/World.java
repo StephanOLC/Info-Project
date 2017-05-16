@@ -17,6 +17,7 @@ public class World {
 	}
 	
 	public void tick(){
+		System.out.println("_______________tick__________________");
 		updateHitboxRegister();
 		for(IngameObject object : objectList){
 			object.tick();
@@ -59,11 +60,13 @@ public class World {
 				targets.add(object.getPosition());
 			}
 		}
+		if(position != null && !targets.isEmpty()){
 			for(Vektor targetPosition : targets){
 				if(position.connectingTo(targetPosition).length() < position.connectingTo(closest).length()){
 					closest = targetPosition;
 				}
 			}
+		}
 			return closest;
 	}
 	

@@ -9,6 +9,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		this.world = world;
 		healthPoints = 500;
 		speed = 5;
+		status = 1;
 	}
 	
 	@Override
@@ -30,14 +31,15 @@ public class ArakhMummy extends Character implements IngameObject {
 
 	@Override
 	public void tick() {
-		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints);
+		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints + "Status: " + status);
 		//collision detection first, movement second, attacking last
+		if(timer >= 5 && status == 0) world.deathNote(this);
 		collision(world.detectCollissionType(position));
 		alreadyMoved = false;
 		timer++;
 		
 		//now actions ->
-		if(world.getClosest('n', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
+		if(status != 0) jumpAttack(new Vektor(10,10));
 		
 	}
 
@@ -52,7 +54,6 @@ public class ArakhMummy extends Character implements IngameObject {
 							status = 0;
 							timer = 0;
 						}
-						if(timer >= 5 && status == 0) world.deathNote(this);
 				break;
 			}
 		}
@@ -71,14 +72,18 @@ public class ArakhMummy extends Character implements IngameObject {
 	private void jumpAttack(Vektor target){
 		if(position.connectingTo(target).length() < 1.5*speed){
 			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), speed - 1, 10000, 1));
-			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY());
+			status = 4;
+			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY() + " Radius: " + (speed-1));
 		}
 		else if(position.connectingTo(target).length() < 6*speed){
 			System.out.println("jumping...");
 			movement(jumpTo(target));
+			status = 3;
 		}
 		else{
 			movement(goTo(target));
+			if(status != 2)status = 2;
+			else status = 3;
 		}
 	}
 }

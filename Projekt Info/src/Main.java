@@ -11,7 +11,7 @@ public class Main {
 		World disneyland = new World();
 		disneyland.spawn("Stein", 10, 10);
 		disneyland.spawn("ArakhMummy", 50, 50);
-		for(int i = 0; i < 10 ; i++){
+		for(int i = 0; i < 20 ; i++){
 			disneyland.tick();
 		}
 		
