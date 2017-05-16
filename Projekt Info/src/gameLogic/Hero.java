@@ -2,24 +2,15 @@ package gameLogic;
 
 import java.util.ArrayList;
 
-public class Hero implements IngameObject {
-	
-	private World world;
-	private Vektor position;
-	private Vektor previousPosition;
-	private int healthPoints;
-	private int status;
+public class Hero  extends Character implements IngameObject {
 	
 	public Hero(Vektor position, World world){
 		this.world = world;
 		this.position = position;
 		healthPoints = 1000;
+		team = 'h';
 	}
-	
-	public char getTeam(){
-		return 'h';
-	}
-	
+
 	public Vektor getPosition(){
 		return position;
 	}
@@ -53,8 +44,13 @@ public class Hero implements IngameObject {
 	public void tick() {
 		collision(world.detectCollissionType(position));
 		
-		//stuff that hero should do in a tick
+		//stuff that hero should do in a tick - implement controller communication here here
 
+	}
+
+	@Override
+	public char getTeam() {
+		return team;
 	}
 
 }

@@ -1,7 +1,5 @@
 package gameLogic;
 
-import java.util.ArrayList;
-
 public class Level implements IngameObject {
 	
 	int level;
@@ -34,17 +32,15 @@ public class Level implements IngameObject {
 		}
 
 	}
-	
-	public void collision(ArrayList<Integer> collisions){}
-
-	@Override
-	public Vektor getPosition() {
-		return null;
-	}
 
 	@Override
 	public char getTeam() {
 		return 0;
+	}
+
+	@Override
+	public Vektor getPosition() {
+		return null;
 	}
 
 }

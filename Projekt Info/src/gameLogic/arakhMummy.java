@@ -8,7 +8,7 @@ public class arakhMummy implements IngameObject {
 	private World world;
 	private Vektor previousPosition;
 	private int healthPoints;
-	private int status;
+	private int status = 1;
 	
 	public arakhMummy(Vektor position, World world){
 		this.position = position;
@@ -29,7 +29,6 @@ public class arakhMummy implements IngameObject {
 		
 	}
 
-	@Override
 	public void collision(ArrayList<Integer> collisions) {
 		for(int effect : collisions){
 			switch (effect){
