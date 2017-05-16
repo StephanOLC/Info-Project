@@ -15,6 +15,14 @@ public class Hero implements IngameObject {
 		this.position = position;
 		healthPoints = 1000;
 	}
+	
+	public char getTeam(){
+		return 'h';
+	}
+	
+	public Vektor getPosition(){
+		return position;
+	}
 
 	@Override
 	public void draw() {
@@ -32,7 +40,7 @@ public class Hero implements IngameObject {
 	public void collision(ArrayList<Integer> collisions){
 		for(int effect : collisions){
 			switch (effect){
-				case 0: position = previousPosition; //resets character (referred to as "char") to its old position in case it runs into a wall
+				case 0: position = previousPosition; //resets character to its old position in case it runs into a wall
 				break;
 				
 				default: healthPoints = healthPoints - effect; if(healthPoints <= 0) status = 0;

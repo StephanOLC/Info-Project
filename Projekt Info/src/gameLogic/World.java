@@ -48,6 +48,21 @@ public class World {
 		hitboxRegister.add(hitbox);
 	}
 	
+	public Vektor getClosest(char team, Vektor position){
+		Vektor closest = null;
+		for(IngameObject object : objectList){
+			if(object.getTeam() == team){
+				closest = object.getPosition();
+			}
+		}
+		for(IngameObject object : objectList){
+			if(object.getTeam() == team && position.connectingTo(object.getPosition()).length() < position.connectingTo(closest).length()){
+				closest = object.getPosition();
+			}
+		}
+		return closest;
+	}
+	
 	public void spawn(String name, int x, int y){
 		switch(name){
 			case "arakhMummy":

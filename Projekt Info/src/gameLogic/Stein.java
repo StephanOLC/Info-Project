@@ -35,4 +35,15 @@ public class Stein implements IngameObject {
 		//stuff that object should do in a tick
 	}
 
+	@Override
+	public char getTeam() {
+		return 'n';
+	}
+
+	@Override
+	public Vektor getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

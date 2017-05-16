@@ -37,4 +37,14 @@ public class Level implements IngameObject {
 	
 	public void collision(ArrayList<Integer> collisions){}
 
+	@Override
+	public Vektor getPosition() {
+		return null;
+	}
+
+	@Override
+	public char getTeam() {
+		return 0;
+	}
+
 }
