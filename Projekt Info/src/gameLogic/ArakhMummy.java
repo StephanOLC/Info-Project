@@ -72,13 +72,13 @@ public class ArakhMummy extends Character implements IngameObject {
 	private void jumpAttack(Vektor target){
 		if(position.connectingTo(target).length() < 1.5*speed){
 			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), speed - 1, 10000, 1));
-			status = 4;
+			status = 5;
 			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY() + " Radius: " + (speed-1));
 		}
 		else if(position.connectingTo(target).length() < 6*speed){
 			System.out.println("jumping...");
 			movement(jumpTo(target));
-			status = 3;
+			status = 4;
 		}
 		else{
 			movement(goTo(target));
