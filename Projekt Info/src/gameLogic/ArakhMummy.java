@@ -34,9 +34,10 @@ public class ArakhMummy extends Character implements IngameObject {
 		//collision detection first, movement second, attacking last
 		collision(world.detectCollissionType(position));
 		alreadyMoved = false;
+		timer++;
 		
 		//now actions ->
-		if(world.getClosest('n', position) != null) movement(goTo(world.getClosest('n', position)));
+		if(world.getClosest('n', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
 		
 	}
 
@@ -46,7 +47,12 @@ public class ArakhMummy extends Character implements IngameObject {
 				case 0: position = previousPosition;
 				break;
 				
-				default: healthPoints = healthPoints - effect; if(healthPoints <= 0) status = 0;
+				default: healthPoints = healthPoints - effect; 
+						if(healthPoints <= 0){
+							status = 0;
+							timer = 0;
+						}
+						if(timer >= 5 && status == 0) world.deathNote(this);
 				break;
 			}
 		}
@@ -63,11 +69,13 @@ public class ArakhMummy extends Character implements IngameObject {
 	}
 	
 	private void jumpAttack(Vektor target){
-		if(position.connectingTo(target).length() < 6*speed){
-			movement(jumpTo(target));
-		}
-		else if(position.connectingTo(target).length() < speed){
+		if(position.connectingTo(target).length() < 1.5*speed){
 			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), speed - 1, 10000, 1));
+			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY());
+		}
+		else if(position.connectingTo(target).length() < 6*speed){
+			System.out.println("jumping...");
+			movement(jumpTo(target));
 		}
 		else{
 			movement(goTo(target));
