@@ -75,9 +75,6 @@ public class Interface {
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_TEXTURE_2D);
 		
-		new GameController(this);
-		
-		
 	}
 	
 	public void setMouseController(MouseController mousecontroller){

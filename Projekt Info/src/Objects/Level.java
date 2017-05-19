@@ -1,4 +1,7 @@
-package gameLogic;
+package Objects;
+
+import Interfaces.IngameObject;
+import gameLogic.Vektor;
 
 public class Level implements IngameObject {
 	

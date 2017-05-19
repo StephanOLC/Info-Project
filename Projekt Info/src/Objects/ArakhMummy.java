@@ -1,15 +1,24 @@
-package gameLogic;
+package Objects;
 
 import java.util.ArrayList;
+
+import Interfaces.IngameObject;
+import Main.World;
+import gameLogic.CircleHitbox;
+import gameLogic.Vektor;
 
 public class ArakhMummy extends Character implements IngameObject {
 	
 	public ArakhMummy(Vektor position, World world){
+		
+		super(position.getX(), position.getY(), "Graphics/icon.png", "png", "ArakhMummy" ,world.getInterface());
+		
 		this.position = position;
 		this.world = world;
 		healthPoints = 500;
 		speed = 5;
 		status = 1; //1:Idle , 2&3:running , 4:jumping , 5:attacking
+		
 	}
 	
 	@Override

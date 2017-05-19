@@ -1,8 +1,13 @@
-package gameLogic;
+package Objects;
 
 import java.util.ArrayList;
 
-public abstract class Character {
+import Main.Interface;
+import Main.World;
+import gameLogic.Vektor;
+
+public abstract class Character extends TextureObject {
+	
 	protected World world;
 	protected Vektor position;
 	protected Vektor previousPosition;
@@ -13,6 +18,18 @@ public abstract class Character {
 	protected char team;
 	protected boolean alreadyMoved;
 	
+	public Character(int x, int y, int width, int height, float rotation, String path, String fileformat, String name, Interface inter) {
+		
+		super(x, y, width, height, rotation, path, fileformat, name, inter);
+		
+	}
+	
+	public Character(int x, int y ,String path,String fileformat, String name,Interface inter ){
+		
+		super(x, y, path, fileformat, name, inter);
+		
+	}
+
 	abstract void collision(ArrayList<Integer> effects);
 	
 	protected Vektor goTo(Vektor target){

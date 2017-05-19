@@ -37,6 +37,14 @@ public class GameController implements KeyboardListener{
 		mousecontroller = new MouseController(inter);
 		inter.setMouseController(mousecontroller);
 		
+		firstWorld();
+		
+	}
+	
+	private void firstWorld(){
+		
+		World  world = new World(inter); 
+		
 	}
 	
 	public void createObjects(){

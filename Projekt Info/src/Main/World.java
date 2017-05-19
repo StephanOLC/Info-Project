@@ -1,6 +1,13 @@
-package gameLogic;
+package Main;
 
 import java.util.ArrayList;
+
+import Interfaces.IngameObject;
+import Objects.ArakhMummy;
+import Objects.Level;
+import Objects.Stein;
+import gameLogic.Hitbox;
+import gameLogic.Vektor;
 
 public class World {
 	
@@ -8,12 +15,20 @@ public class World {
 	private ArrayList<IngameObject> objectList;
 	ArrayList<IngameObject> deathNote;
 	Level level;
+	Interface inter;
 	
-	public World(){
+	public World(Interface inter){
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
 		level = new Level(0);
+		this.inter = inter;
+	}
+	
+	public Interface getInterface(){
+		
+		return inter;
+		
 	}
 	
 	public void tick(){

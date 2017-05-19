@@ -1,6 +1,10 @@
-package gameLogic;
+package Objects;
 
 import java.util.ArrayList;
+
+import Interfaces.IngameObject;
+import Main.World;
+import gameLogic.Vektor;
 
 public class Stein implements IngameObject {
 	private World world;

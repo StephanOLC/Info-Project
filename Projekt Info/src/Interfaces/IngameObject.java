@@ -1,4 +1,6 @@
-package gameLogic;
+package Interfaces;
+
+import gameLogic.Vektor;
 
 public interface IngameObject {
 	public char getTeam();
