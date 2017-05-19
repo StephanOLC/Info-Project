@@ -61,6 +61,7 @@ public class World {
 			}
 		}
 		if(position != null && !targets.isEmpty()){
+			closest = targets.get(0);
 			for(Vektor targetPosition : targets){
 				if(position.connectingTo(targetPosition).length() < position.connectingTo(closest).length()){
 					closest = targetPosition;
