@@ -13,7 +13,7 @@ import Interfaces.Drawableobject;
 import Main.GameController;
 import Main.Interface;
 
-public class ClickableObject implements Drawableobject {
+public abstract class ClickableObject implements Drawableobject {
 	
 	int x,y,width,height;
 	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;

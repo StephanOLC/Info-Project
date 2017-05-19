@@ -6,7 +6,7 @@ import Interfaces.Drawableobject;
 import Main.Interface;
 import static org.lwjgl.opengl.GL11.*;
 
-public class TextureObject implements Drawableobject{
+public abstract class TextureObject implements Drawableobject{
 	
 	int x,y,width,height;
 	float rotation;
