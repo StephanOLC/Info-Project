@@ -44,6 +44,9 @@ public class GameController implements KeyboardListener{
 	private void firstWorld(){
 		
 		World  world = new World(inter); 
+		world.spawn("Arakh", 0, 0);
+		world.spawn("Stein", 500, 500);
+		new Thread(world, "world").start();
 		
 	}
 	

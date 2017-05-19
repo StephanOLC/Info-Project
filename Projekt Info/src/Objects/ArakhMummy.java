@@ -29,18 +29,10 @@ public class ArakhMummy extends Character implements IngameObject {
 	public char getTeam(){
 		return 'e';
 	}
-	
-	@Override
-	public void draw() {
-		switch(status){
-			
-		}
-
-	}
 
 	@Override
 	public void tick() {
-		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints + "Status: " + status);
+		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints + " Status: " + status);
 		//collision detection first, movement second, attacking last
 		if(timer >= 5 && status == 0) world.deathNote(this);
 		collision(world.detectCollissionType(position));
@@ -49,6 +41,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		
 		//now actions ->
 		if(world.getClosest('n', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
+		setPosition(position.getX(), position.getY());
 		
 	}
 
@@ -80,7 +73,7 @@ public class ArakhMummy extends Character implements IngameObject {
 	
 	private void jumpAttack(Vektor target){
 		if(position.connectingTo(target).length() < 1.5*speed){
-			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), speed - 1, 10000, 1));
+			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), 2, 10000, 1));
 			status = 5;
 			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY() + " Radius: " + (speed-1));
 		}

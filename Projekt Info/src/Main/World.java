@@ -9,13 +9,14 @@ import Objects.Stein;
 import gameLogic.Hitbox;
 import gameLogic.Vektor;
 
-public class World {
+public class World implements Runnable{
 	
 	private ArrayList<Hitbox> hitboxRegister;
 	private ArrayList<IngameObject> objectList;
 	ArrayList<IngameObject> deathNote;
 	Level level;
 	Interface inter;
+	boolean run = true;
 	
 	public World(Interface inter){
 		hitboxRegister = new ArrayList<Hitbox>();
@@ -28,6 +29,22 @@ public class World {
 	public Interface getInterface(){
 		
 		return inter;
+		
+	}
+	
+	public void run(){
+		
+		while(run){
+			
+			tick();
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
 	}
 	
