@@ -1,13 +1,12 @@
-package Main;
+package gameLogic;
 
 import java.util.ArrayList;
 
-import Interfaces.IngameObject;
-import Objects.ArakhMummy;
-import Objects.Level;
-import Objects.Stein;
-import gameLogic.Hitbox;
-import gameLogic.Vektor;
+import Main.Interface;
+import ingameObjects.ArakhMummy;
+import ingameObjects.IngameObject;
+import ingameObjects.Level;
+import ingameObjects.Stein;
 
 public class World implements Runnable{
 	

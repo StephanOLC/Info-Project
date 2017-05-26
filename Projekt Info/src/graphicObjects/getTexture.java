@@ -1,4 +1,4 @@
-package Objects;
+package graphicObjects;
 
 import java.io.File;
 import java.io.FileInputStream;

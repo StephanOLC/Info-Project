@@ -1,4 +1,4 @@
-package Interfaces;
+package ingameObjects;
 
 import gameLogic.Vektor;
 

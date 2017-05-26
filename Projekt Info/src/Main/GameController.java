@@ -9,8 +9,9 @@ import Inputs.KeyboardController;
 import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.KeyboardListener;
+import gameLogic.World;
+import graphicObjects.ClickableObject;
 import Interfaces.Drawableobject;
-import Objects.ClickableObject;
 
 public class GameController implements KeyboardListener{
 	

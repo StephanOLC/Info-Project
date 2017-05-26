@@ -1,4 +1,4 @@
-package Objects;
+package graphicObjects;
 
 import static org.lwjgl.opengl.GL11.*;
 

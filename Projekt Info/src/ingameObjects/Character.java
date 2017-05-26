@@ -1,10 +1,11 @@
-package Objects;
+package ingameObjects;
 
 import java.util.ArrayList;
 
 import Main.Interface;
-import Main.World;
 import gameLogic.Vektor;
+import gameLogic.World;
+import graphicObjects.TextureObject;
 
 public abstract class Character extends TextureObject {
 	
