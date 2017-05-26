@@ -18,6 +18,7 @@ public abstract class Character extends TextureObject {
 	protected int timer;
 	protected char team;
 	protected boolean alreadyMoved;
+	protected char direction;
 	
 	public Character(int x, int y, int width, int height, float rotation, String path, String fileformat, String name, Interface inter) {
 		
@@ -46,6 +47,42 @@ public abstract class Character extends TextureObject {
 	protected void movement(Vektor direction){
 		if(!alreadyMoved){
 			position = position.plus(direction);
+			updateDirection(direction);
+		}
+	}
+	
+	protected void updateDirection(Vektor direction){
+		if(direction.getX() > 0 && direction.getY() > 0){
+			if(direction.getX() > direction.getY()){
+				this.direction = 'o';
+			}
+			else{
+				this.direction = 's';
+			}
+		}
+		else if(direction.getX() > 0 && direction.getY() < 0){
+			if(direction.getX()*direction.getX() > direction.getY()*direction.getY()){
+				this.direction = 'o';
+			}
+			else{
+				this.direction = 'n';
+			}
+				}
+		else if(direction.getX() < 0 && direction.getY() < 0){
+			if(direction.getX()*direction.getX() > direction.getY()*direction.getY()){
+				this.direction = 'w';
+			}
+			else{
+				this.direction = 'n';
+			}
+		}
+		else if(direction.getX() < 0 && direction.getY() > 0){
+			if(direction.getX()*direction.getX() > direction.getY()*direction.getY()){
+				this.direction = 'w';
+			}
+			else{
+				this.direction = 's';
+			}
 		}
 	}
 	
