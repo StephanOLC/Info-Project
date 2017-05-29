@@ -31,7 +31,7 @@ public class ArakhMummy extends Character implements IngameObject {
 
 	@Override
 	public void tick() {
-		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + "] HP: " + healthPoints + " Status: " + status);
+		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + direction +"] HP: " + healthPoints + " Status: " + status);
 		//collision detection first, movement second, attacking last
 		//sets position of graphic object
 		setPosition(position.getX(), position.getY());
