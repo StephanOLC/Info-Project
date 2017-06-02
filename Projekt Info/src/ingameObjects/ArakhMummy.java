@@ -34,7 +34,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		System.out.println("arakhMummy - position: [" + position.getX() + ", " + position.getY() + direction +"] HP: " + healthPoints + " Status: " + status);
 		//collision detection first, movement second, attacking last
 		//sets position of graphic object
-		setPosition(position.getX(), position.getY());
+		updateGraphic();
 		if(timer >= 5 && status == 0) world.deathNote(this);
 		collision(world.detectCollissionType(position));
 		alreadyMoved = false;
@@ -88,5 +88,11 @@ public class ArakhMummy extends Character implements IngameObject {
 			if(status != 2)status = 2;
 			else status = 3;
 		}
+	}
+
+	@Override
+	public void updateGraphic() {
+		setPosition(position.getX(), position.getY());
+		
 	}
 }

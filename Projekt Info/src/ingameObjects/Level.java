@@ -1,28 +1,21 @@
 package ingameObjects;
 
 import gameLogic.Vektor;
+import gameLogic.World;
+import graphicObjects.TextureObject;
 
-public class Level implements IngameObject {
+public class Level extends TextureObject implements IngameObject {
 	
 	int level;
 	
-	public Level(int level){
+	public Level(int level, World world){
+		super(0, 0, "Graphics/icon.png", "png", "Level" ,world.getInterface());
 		this.level = level;
 		switch(level){
 		case 0: //spawns hero @start-position,sets up hitboxes for demo-level boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns
 			break;
 			
 		}
-	}
-
-	@Override
-	public void draw() {
-		switch(level){
-		case 0: //demo level graphics
-			break;
-			
-		}
-
 	}
 
 	@Override
@@ -43,6 +36,12 @@ public class Level implements IngameObject {
 	@Override
 	public Vektor getPosition() {
 		return new Vektor(0, 0);
+	}
+
+	@Override
+	public void updateGraphic() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
