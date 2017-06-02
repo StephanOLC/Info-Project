@@ -60,6 +60,13 @@ public abstract class ClickableObject implements Drawableobject {
 		
 		texturenormal = new getTexture().gettexture(fileformatnormal, pathnormal);
 		texturepressed = new getTexture().gettexture(fileformatpressed, pathpressed);
+		if(width != texturepressed.getImageWidth() || height != texturepressed.getImageHeight()){
+			
+			texturepressed = texturenormal;
+			System.err.println("Height or Width of the pressed texture differs from the height or width of the normal texture");
+			
+		}
+		
 		
 	}
 
@@ -130,6 +137,37 @@ public abstract class ClickableObject implements Drawableobject {
 	public Texture getTexturepressed(){
 		
 		return texturepressed;
+		
+	}
+	
+	protected void setTexturenormal(Texture texture){
+		
+		pathnormal = "";
+		fileformatnormal = "";
+		this.texturenormal = texture;
+		
+	}
+	
+	protected void newTexturenormal(String path, String fileformnat){
+		
+		pathnormal = path;
+		fileformatnormal = fileformnat;
+		
+	}
+	
+	protected void setTexturepressed(Texture texture){
+		
+		pathpressed = "";
+		fileformatpressed = "";
+		this.texturepressed = texture;
+		
+	}
+	
+	protected void newTexturepressed(String path, String fileformat){
+		
+		pathpressed = path;
+		fileformatpressed = fileformat;
+		loadtextures();
 		
 	}
 
