@@ -21,7 +21,7 @@ public class World implements Runnable{
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
-		level = new Level(0);
+		level = new Level(0, this);
 		this.inter = inter;
 	}
 	
