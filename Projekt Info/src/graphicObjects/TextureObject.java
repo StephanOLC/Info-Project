@@ -91,6 +91,21 @@ public abstract class TextureObject implements Drawableobject{
 		texture = new getTexture().gettexture(fileformat, path);
 		
 	}
+	
+	protected void setTexture(Texture texture){
+		
+		path = "";
+		fileformat = "";
+		this.texture = texture;
+		
+	}
+	
+	protected void setsize(int width, int height){
+		
+		this.width = width;
+		this.height = height;
+		
+	}
 
 	@Override
 	public int gety() {
