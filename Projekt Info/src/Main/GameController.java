@@ -15,13 +15,13 @@ import Objects.StartButton;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
-	public Interface inter;
-	public KeyboardController keyboardcontroller;
-	public MouseController mousecontroller;
-	public List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
-	public List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
-	String world;
-	boolean changeworld;
+	private Interface inter;
+	private KeyboardController keyboardcontroller;
+	private MouseController mousecontroller;
+	private List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
+	private List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
+	private String world;
+	private boolean changeworld;
 	
 	public GameController(Interface inter){
 			
@@ -78,7 +78,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		
 		inter.clear();
 		inter.resetCamera();
-		inter.cameramovement = false;
+		inter.setCameramoveable(false);
 		
 		StartButton startButton = new StartButton(100, 100, "startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
@@ -93,7 +93,8 @@ public class GameController implements KeyboardListener,ClickListener{
 		
 		inter.clear();
 		inter.resetCamera();
-		inter.cameramovement = true;
+		inter.setCameramoveable(true);
+		
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
