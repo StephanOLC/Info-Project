@@ -9,22 +9,23 @@ import Inputs.KeyboardController;
 import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.KeyboardListener;
-import gameLogic.World;
-import graphicObjects.ClickableObject;
 import Interfaces.Drawableobject;
+import Objects.ClickableObject;
+import Objects.StartButton;
 
-public class GameController implements KeyboardListener{
+public class GameController implements KeyboardListener,ClickListener{
 	
 	public Interface inter;
 	public KeyboardController keyboardcontroller;
 	public MouseController mousecontroller;
 	public List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
 	public List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
+	String world;
+	boolean changeworld;
 	
 	public GameController(Interface inter){
 			
 		init(inter);
-		createObjects();
 		startThreads();
 		keyboardcontroller.addkeyboardlistener(this);
 		
@@ -33,26 +34,70 @@ public class GameController implements KeyboardListener{
 	public void init(Interface inter){
 		
 		this.inter = inter;
+		inter.setGamecontroller(this);
 		keyboardcontroller = new KeyboardController(inter);
 		new Thread(keyboardcontroller).start();
 		mousecontroller = new MouseController(inter);
 		inter.setMouseController(mousecontroller);
 		
-		firstWorld();
+		changeWorld("startscreen");
+		
+	}
+	
+	public void changeWorld(String Worldname){
+		
+		world = Worldname;
+		changeworld = true;
+		
+		System.out.println("changed world to" + Worldname);
+		
+	}
+	
+	public void updateWorld(){
+		
+		if(changeworld){
+			
+			switch(world){
+			
+			case"startscreen":
+				startscreen();
+				break;
+				
+			case"firstworld":
+				firstWorld();
+				break;
+			
+			}
+			
+			changeworld = false;
+		}
+		
+	}
+	
+	private void startscreen(){
+		
+		inter.clear();
+		inter.resetCamera();
+		inter.cameramovement = false;
+		
+		StartButton startButton = new StartButton(100, 100, "startbutton", inter, this); 
+		new Thread(startButton, "startbutton").start();
+		clickableObjects.add(startButton);
+		addClickListener(this, "startbutton");
+		
 		
 	}
 	
 	private void firstWorld(){
 		
+		
+		inter.clear();
+		inter.resetCamera();
+		inter.cameramovement = true;
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
 		new Thread(world, "world").start();
-		
-	}
-	
-	public void createObjects(){
-		
 		
 	}
 	
@@ -107,6 +152,21 @@ public class GameController implements KeyboardListener{
 			
 			inter.requestclose();
 			
+		}
+		
+	}
+
+	@Override
+	public void onpress(String ButtonName) {
+		
+		switch(ButtonName){
+			
+		case "startbutton":
+			
+			changeWorld("firstworld");
+			
+			break;
+		
 		}
 		
 	}
