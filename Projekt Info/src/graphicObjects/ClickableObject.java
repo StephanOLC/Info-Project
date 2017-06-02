@@ -15,13 +15,13 @@ import Main.Interface;
 
 public abstract class ClickableObject implements Drawableobject {
 	
-	int x,y,width,height;
-	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
-	Texture texturenormal, texturepressed;
-	Interface inter;
-	boolean pressed;
-	List<ClickListener> listener = new ArrayList<ClickListener>();
-	MouseController mousecontroller;
+	protected int x,y,width,height;
+	protected String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
+	protected Texture texturenormal, texturepressed;
+	protected Interface inter;
+	protected boolean pressed;
+	protected List<ClickListener> listener = new ArrayList<ClickListener>();
+	protected MouseController mousecontroller;
 	
 	public ClickableObject(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
 		
