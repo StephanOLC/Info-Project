@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -21,15 +22,17 @@ import Interfaces.Drawableobject;
 
 public class Interface {
 	
-	int height = 480;
-	int width = 640;
-	float movex,movey,transx,transy;
-	List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
-	List<Drawableobject> insert = new ArrayList<Drawableobject>();
-	Drawableobject back;
+	private int height = 480;
+	private int width = 640;
+	private int fps = 160;
+	private float movex,movey,transx,transy;
+	private List<Drawableobject> Drawableobjects = new CopyOnWriteArrayList<Drawableobject>();
+	private List<Drawableobject> insert = new CopyOnWriteArrayList<Drawableobject>();
+	private Drawableobject back;
 	public boolean run;
-	boolean closerequested, cameramovement;
-	MouseController mousecontroller;
+	private boolean closerequested, cameramovement, reset;
+	private GameController controller;
+	private MouseController mousecontroller;
 	
 	public Interface(){
 		
@@ -89,18 +92,38 @@ public class Interface {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
+			updateGamecontroller();
 			updateMouse();
 			getmovement();
 			moveCamera();
 			draw();
 			
 			Display.update();
-			Display.sync(160);
+			Display.sync(fps);
 		}
 		
 		close();
 		
 	}
+	
+	public void setGamecontroller(GameController controller){
+		
+		this.controller = controller;
+		
+	}
+	
+	public void setCameramoveable(boolean moveable){
+		
+		cameramovement = moveable;
+		
+	}
+	
+	private void updateGamecontroller(){
+		
+		controller.updateWorld();
+		
+	}
+	
 	
 	public void updateMouse(){
 		
@@ -147,6 +170,18 @@ public class Interface {
 			
 		}
 		
+		if(reset){
+			
+			movex = transx;
+			movey = transy;
+			
+			reset = false;
+			
+			moveCamera();
+			
+			
+		}
+		
 		
 	}
 	
@@ -178,11 +213,23 @@ public class Interface {
 		
 	}
 	
+	public void setfps(int fps){
+		
+		this.fps = fps;
+		
+	}
 	
-	public void setmovement(float x ,float y){
+	public void setmovement(float x ,float y, boolean cameramovement){
 		
 		movex = x;
 		movey = y;
+		this.cameramovement = cameramovement;
+		
+	}
+	
+	public void resetCamera(){
+		
+		reset = true;
 		
 	}
 	
@@ -214,6 +261,15 @@ public class Interface {
 	public void addDrawableobject(Drawableobject obj){
 		
 		insert.add(obj);
+		
+	}
+	
+	public List<Drawableobject> clear(){
+		
+		List<Drawableobject> old = Drawableobjects;
+		Drawableobjects = new ArrayList<Drawableobject>();
+		
+		return old;
 		
 	}
 

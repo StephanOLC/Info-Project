@@ -2,8 +2,8 @@ package graphicObjects;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.newdawn.slick.opengl.Texture;
 
@@ -20,7 +20,7 @@ public abstract class ClickableObject implements Drawableobject {
 	protected Texture texturenormal, texturepressed;
 	protected Interface inter;
 	protected boolean pressed;
-	protected List<ClickListener> listener = new ArrayList<ClickListener>();
+	protected List<ClickListener> listener = new CopyOnWriteArrayList<ClickListener>();
 	protected MouseController mousecontroller;
 	
 	public ClickableObject(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){

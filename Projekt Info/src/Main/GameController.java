@@ -1,7 +1,7 @@
 package Main;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.lwjgl.input.Keyboard;
 
@@ -9,17 +9,18 @@ import Inputs.KeyboardController;
 import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.KeyboardListener;
+import gameLogic.World;
 import Interfaces.Drawableobject;
-import Objects.ClickableObject;
-import Objects.StartButton;
+import graphicObjects.ClickableObject;
+import ingameObjects.StartButton;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
 	private Interface inter;
 	private KeyboardController keyboardcontroller;
 	private MouseController mousecontroller;
-	private List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
-	private List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
+	private List<Drawableobject> Drawableobjects = new CopyOnWriteArrayList<Drawableobject>();
+	private List<ClickableObject> clickableObjects = new CopyOnWriteArrayList<ClickableObject>();
 	private String world;
 	private boolean changeworld;
 	
