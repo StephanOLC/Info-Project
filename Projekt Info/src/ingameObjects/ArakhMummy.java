@@ -41,7 +41,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		timer++;
 		
 		//now actions ->
-		if(world.getClosest('n', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
+		if(world.getClosest('h', position) != null && status != 0) jumpAttack(world.getClosest('n', position));
 		
 		
 	}

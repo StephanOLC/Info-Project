@@ -43,19 +43,26 @@ public class Lever extends TextureObject implements IngameObject {
 	public void addDevice(Device device){
 		deviceList.add(device);
 	}
-	
+
 	public void activateDevices(){
 		for(Device device : deviceList){
 			device.activate(activated);
 		}
 	}
-	
+
 	public void collision(ArrayList<Integer> collisions){
+		boolean switched = false;
 		for(int effect : collisions){
 			switch (effect){
-				default: activated = !activated;
+				case 0: world.deathNote(this);
+					break;
+			
+				default: switched = true;
 				break;
 			}
+		}
+		if(switched){
+			activated = !activated;
 		}
 	}
 
