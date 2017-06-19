@@ -19,7 +19,7 @@ public abstract class ClickableObject implements Drawableobject {
 	protected String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
 	protected Texture texturenormal, texturepressed;
 	protected Interface inter;
-	protected boolean pressed;
+	protected boolean pressed,stop;
 	protected List<ClickListener> listener = new CopyOnWriteArrayList<ClickListener>();
 	protected MouseController mousecontroller;
 	
@@ -186,10 +186,12 @@ public abstract class ClickableObject implements Drawableobject {
 	@Override
 	public void run() {
 		
-		while(inter.run){
+		while(inter.run && !stop){
 		
 			int x = (int) mousecontroller.getabsolutex();
 			int y = (int) mousecontroller.getabsolutey();
+			
+			System.out.print("");
 		
 			if(x > this.x && x < this.x + width && y > this.y && y  < this.y + height && mousecontroller.isleftdown()){
 			
@@ -220,6 +222,12 @@ public abstract class ClickableObject implements Drawableobject {
 			clickListener.onpress(getName());
 			
 		}
+		
+	}
+	
+	public void stop(){
+		
+		stop = true;
 		
 	}
 	

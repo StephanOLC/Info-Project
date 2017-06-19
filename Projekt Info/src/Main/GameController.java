@@ -80,6 +80,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.clear();
 		inter.resetCamera();
 		inter.setCameramoveable(false);
+		clearClickableObjects();
 		
 		StartButton startButton = new StartButton(100, 100, "startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
@@ -95,11 +96,27 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.clear();
 		inter.resetCamera();
 		inter.setCameramoveable(true);
+		clearClickableObjects();
 		
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
 		new Thread(world, "world").start();
+		
+	}
+	
+	private List<ClickableObject> clearClickableObjects(){
+		
+		List<ClickableObject> old = clickableObjects;
+		
+		for(ClickableObject clickableObject : clickableObjects){
+			
+			clickableObject.stop();
+			
+		}
+		
+		return old;
+		
 		
 	}
 	
