@@ -92,6 +92,12 @@ public abstract class TextureObject implements Drawableobject{
 		
 	}
 	
+	protected Texture loadtexture(String path, String fileformat){
+		
+		return new getTexture().gettexture(fileformat, path);
+		
+	}
+	
 	protected void setTexture(Texture texture){
 		
 		path = "";
