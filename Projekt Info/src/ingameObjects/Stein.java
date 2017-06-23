@@ -4,21 +4,19 @@ import java.util.ArrayList;
 
 import gameLogic.Vektor;
 import gameLogic.World;
+import graphicObjects.TextureObject;
 
-public class Stein implements IngameObject {
+public class Stein extends TextureObject implements IngameObject {
 	private World world;
 	private Vektor position;
 	private int healthPoints;
 	
 	public Stein(Vektor position, World world){
+		super(position.getX(), position.getY(), "Graphics/icon.png", "png", "Stein" ,world.getInterface());
+		this.position = position;
 		this.world = world;
 		this.position = position;
 		healthPoints = 100;
-	}
-
-	public void draw() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public void collision(ArrayList<Integer> collisions){
@@ -49,6 +47,12 @@ public class Stein implements IngameObject {
 	public Vektor getPosition() {
 		// TODO Auto-generated method stub
 		return position;
+	}
+
+	@Override
+	public void updateGraphic() {
+		setPosition(position.getX(), position.getY());
+		
 	}
 
 }

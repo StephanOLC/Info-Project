@@ -19,19 +19,6 @@ public class Hero  extends Character implements IngameObject {
 		return position;
 	}
 
-	@Override
-	public void draw() {
-		switch(status){
-			case 0: //draw dead hero
-				break;
-				
-			default: //draw idle hero
-				break;
-			
-		}
-
-	}
-	
 	public void collision(ArrayList<Integer> collisions){
 		for(int effect : collisions){
 			switch (effect){
@@ -47,7 +34,7 @@ public class Hero  extends Character implements IngameObject {
 	@Override
 	public void tick() {
 		collision(world.detectCollissionType(position));
-		
+		updateGraphic();
 		//stuff that hero should do in a tick - implement controller communication here here
 
 	}
@@ -55,6 +42,12 @@ public class Hero  extends Character implements IngameObject {
 	@Override
 	public char getTeam() {
 		return team;
+	}
+
+	@Override
+	public void updateGraphic() {
+		setPosition(position.getX(), position.getY());
+		
 	}
 
 }
