@@ -14,7 +14,7 @@ public class Lever extends TextureObject implements IngameObject {
 	private ArrayList<Device> deviceList;
 	
 	public Lever(Vektor position, World world){
-		super(position.getX(), position.getY(), "Graphics/icon.png", "png", "Lever" ,world.getInterface());
+		super(position.getX(), position.getY(), "Graphics/Schalter/Schalter1.png", "png", "Lever" ,world.getInterface());
 		this.position = position;
 		this.world = world;
 		deviceList = new ArrayList<Device>();

@@ -6,6 +6,7 @@ import Main.Interface;
 import ingameObjects.ArakhMummy;
 import ingameObjects.IngameObject;
 import ingameObjects.Level;
+import ingameObjects.Lever;
 import ingameObjects.Stein;
 
 public class World implements Runnable{
@@ -109,6 +110,9 @@ public class World implements Runnable{
 				break;
 				
 			case "Stein": objectList.add(new Stein(new Vektor(x, y), this));
+				break;
+				
+			case "Lever": objectList.add(new Lever(new Vektor(x, y), this));
 				break;
 			
 		}
