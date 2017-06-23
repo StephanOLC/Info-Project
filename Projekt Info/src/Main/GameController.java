@@ -98,6 +98,9 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(true);
 		clearClickableObjects();
 		
+		if(inter == null){
+			System.out.println("Stephan ist boosted");
+		}
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
