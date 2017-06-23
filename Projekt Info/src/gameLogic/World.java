@@ -6,6 +6,7 @@ import Main.Interface;
 import ingameObjects.ArakhMummy;
 import ingameObjects.IngameObject;
 import ingameObjects.Level;
+import ingameObjects.Lever;
 import ingameObjects.Stein;
 
 public class World implements Runnable{
@@ -21,7 +22,7 @@ public class World implements Runnable{
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
-		level = new Level(0);
+		level = new Level(0, this);
 		this.inter = inter;
 	}
 	
@@ -109,6 +110,9 @@ public class World implements Runnable{
 				break;
 				
 			case "Stein": objectList.add(new Stein(new Vektor(x, y), this));
+				break;
+				
+			case "Lever": objectList.add(new Lever(new Vektor(x, y), this));
 				break;
 			
 		}

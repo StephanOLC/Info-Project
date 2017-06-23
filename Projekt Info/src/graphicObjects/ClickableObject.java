@@ -2,8 +2,8 @@ package graphicObjects;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.newdawn.slick.opengl.Texture;
 
@@ -15,13 +15,13 @@ import Main.Interface;
 
 public abstract class ClickableObject implements Drawableobject {
 	
-	int x,y,width,height;
-	String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
-	Texture texturenormal, texturepressed;
-	Interface inter;
-	boolean pressed;
-	List<ClickListener> listener = new ArrayList<ClickListener>();
-	MouseController mousecontroller;
+	protected int x,y,width,height;
+	protected String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
+	protected Texture texturenormal, texturepressed;
+	protected Interface inter;
+	protected boolean pressed,stop;
+	protected List<ClickListener> listener = new CopyOnWriteArrayList<ClickListener>();
+	protected MouseController mousecontroller;
 	
 	public ClickableObject(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
 		
@@ -60,6 +60,13 @@ public abstract class ClickableObject implements Drawableobject {
 		
 		texturenormal = new getTexture().gettexture(fileformatnormal, pathnormal);
 		texturepressed = new getTexture().gettexture(fileformatpressed, pathpressed);
+		if(width != texturepressed.getImageWidth() || height != texturepressed.getImageHeight()){
+			
+			texturepressed = texturenormal;
+			System.err.println("Height or Width of the pressed texture differs from the height or width of the normal texture");
+			
+		}
+		
 		
 	}
 
@@ -132,6 +139,49 @@ public abstract class ClickableObject implements Drawableobject {
 		return texturepressed;
 		
 	}
+	
+	protected void setwidth(int width){
+		
+		this.width = width;
+		
+	}
+	
+	protected void setheight(int height){
+		
+		this.height = height;
+		
+	}
+	
+	protected void setTexturenormal(Texture texture){
+		
+		pathnormal = "";
+		fileformatnormal = "";
+		this.texturenormal = texture;
+		
+	}
+	
+	protected void newTexturenormal(String path, String fileformnat){
+		
+		pathnormal = path;
+		fileformatnormal = fileformnat;
+		
+	}
+	
+	protected void setTexturepressed(Texture texture){
+		
+		pathpressed = "";
+		fileformatpressed = "";
+		this.texturepressed = texture;
+		
+	}
+	
+	protected void newTexturepressed(String path, String fileformat){
+		
+		pathpressed = path;
+		fileformatpressed = fileformat;
+		loadtextures();
+		
+	}
 
 	public String getName(){
 		
@@ -148,10 +198,12 @@ public abstract class ClickableObject implements Drawableobject {
 	@Override
 	public void run() {
 		
-		while(inter.run){
+		while(inter.run && !stop){
 		
 			int x = (int) mousecontroller.getabsolutex();
 			int y = (int) mousecontroller.getabsolutey();
+			
+			System.out.print("");
 		
 			if(x > this.x && x < this.x + width && y > this.y && y  < this.y + height && mousecontroller.isleftdown()){
 			
@@ -182,6 +234,12 @@ public abstract class ClickableObject implements Drawableobject {
 			clickListener.onpress(getName());
 			
 		}
+		
+	}
+	
+	public void stop(){
+		
+		stop = true;
 		
 	}
 	

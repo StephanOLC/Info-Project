@@ -1,7 +1,7 @@
 package Main;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.lwjgl.input.Keyboard;
 
@@ -10,21 +10,23 @@ import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.KeyboardListener;
 import gameLogic.World;
-import graphicObjects.ClickableObject;
 import Interfaces.Drawableobject;
+import graphicObjects.ClickableObject;
+import ingameObjects.StartButton;
 
-public class GameController implements KeyboardListener{
+public class GameController implements KeyboardListener,ClickListener{
 	
-	public Interface inter;
-	public KeyboardController keyboardcontroller;
-	public MouseController mousecontroller;
-	public List<Drawableobject> Drawableobjects = new ArrayList<Drawableobject>();
-	public List<ClickableObject> clickableObjects = new ArrayList<ClickableObject>();
+	private Interface inter;
+	private KeyboardController keyboardcontroller;
+	private MouseController mousecontroller;
+	private List<Drawableobject> Drawableobjects = new CopyOnWriteArrayList<Drawableobject>();
+	private List<ClickableObject> clickableObjects = new CopyOnWriteArrayList<ClickableObject>();
+	private String world;
+	private boolean changeworld;
 	
 	public GameController(Interface inter){
 			
 		init(inter);
-		createObjects();
 		startThreads();
 		keyboardcontroller.addkeyboardlistener(this);
 		
@@ -33,16 +35,68 @@ public class GameController implements KeyboardListener{
 	public void init(Interface inter){
 		
 		this.inter = inter;
+		inter.setGamecontroller(this);
 		keyboardcontroller = new KeyboardController(inter);
 		new Thread(keyboardcontroller).start();
 		mousecontroller = new MouseController(inter);
 		inter.setMouseController(mousecontroller);
 		
-		firstWorld();
+		changeWorld("startscreen");
+		
+	}
+	
+	public void changeWorld(String Worldname){
+		
+		world = Worldname;
+		changeworld = true;
+		
+		System.out.println("changed world to" + Worldname);
+		
+	}
+	
+	public void updateWorld(){
+		
+		if(changeworld){
+			
+			switch(world){
+			
+			case"startscreen":
+				startscreen();
+				break;
+				
+			case"firstworld":
+				firstWorld();
+				break;
+			
+			}
+			
+			changeworld = false;
+		}
+		
+	}
+	
+	private void startscreen(){
+		
+		inter.clear();
+		inter.resetCamera();
+		inter.setCameramoveable(false);
+		clearClickableObjects();
+		
+		StartButton startButton = new StartButton("startbutton", inter, this); 
+		new Thread(startButton, "startbutton").start();
+		clickableObjects.add(startButton);
+		addClickListener(this, "startbutton");
+		
 		
 	}
 	
 	private void firstWorld(){
+		
+		
+		inter.clear();
+		inter.resetCamera();
+		inter.setCameramoveable(true);
+		clearClickableObjects();
 		
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
@@ -51,7 +105,17 @@ public class GameController implements KeyboardListener{
 		
 	}
 	
-	public void createObjects(){
+	private List<ClickableObject> clearClickableObjects(){
+		
+		List<ClickableObject> old = clickableObjects;
+		
+		for(ClickableObject clickableObject : clickableObjects){
+			
+			clickableObject.stop();
+			
+		}
+		
+		return old;
 		
 		
 	}
@@ -107,6 +171,21 @@ public class GameController implements KeyboardListener{
 			
 			inter.requestclose();
 			
+		}
+		
+	}
+
+	@Override
+	public void onpress(String ButtonName) {
+		
+		switch(ButtonName){
+			
+		case "startbutton":
+			
+			changeWorld("firstworld");
+			
+			break;
+		
 		}
 		
 	}

@@ -8,10 +8,10 @@ import static org.lwjgl.opengl.GL11.*;
 
 public abstract class TextureObject implements Drawableobject{
 	
-	int x,y,width,height;
-	float rotation;
-	String path, fileformat,name;
-	Texture texture;
+	protected int x,y,width,height;
+	protected float rotation;
+	protected String path, fileformat,name;
+	protected Texture texture;
 
 	public TextureObject(int x, int y ,String path,String fileformat, String name,Interface inter ){
 		
@@ -86,9 +86,24 @@ public abstract class TextureObject implements Drawableobject{
 		
 	}
 	
-	public void newTexture(String path, String fileformat){
+	protected void newTexture(String path, String fileformat){
 		
 		texture = new getTexture().gettexture(fileformat, path);
+		
+	}
+	
+	protected void setTexture(Texture texture){
+		
+		path = "";
+		fileformat = "";
+		this.texture = texture;
+		
+	}
+	
+	protected void setsize(int width, int height){
+		
+		this.width = width;
+		this.height = height;
 		
 	}
 
