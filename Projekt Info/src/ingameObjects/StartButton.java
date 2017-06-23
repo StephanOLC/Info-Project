@@ -11,6 +11,7 @@ public class StartButton extends ClickableObject {
 		super(0,0,"Graphics/Start-Knopf.png","Png",name,inter,controller);
 		setheight(620);
 		setwidth(1050);
+		
 	}
 	
 }
