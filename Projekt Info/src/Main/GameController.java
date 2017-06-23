@@ -82,7 +82,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
-		StartButton startButton = new StartButton(100, 100, "startbutton", inter, this); 
+		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
 		clickableObjects.add(startButton);
 		addClickListener(this, "startbutton");

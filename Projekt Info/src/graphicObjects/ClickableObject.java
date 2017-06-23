@@ -140,6 +140,18 @@ public abstract class ClickableObject implements Drawableobject {
 		
 	}
 	
+	protected void setwidth(int width){
+		
+		this.width = width;
+		
+	}
+	
+	protected void setheight(int height){
+		
+		this.height = height;
+		
+	}
+	
 	protected void setTexturenormal(Texture texture){
 		
 		pathnormal = "";
