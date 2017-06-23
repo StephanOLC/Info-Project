@@ -13,6 +13,7 @@ import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
 import ingameObjects.StartButton;
+import ingameObjects.WhiteScreen;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
@@ -82,6 +83,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
+		new WhiteScreen(320, 500, 1000, 1200, "whiteScreen", inter);
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
 		clickableObjects.add(startButton);
