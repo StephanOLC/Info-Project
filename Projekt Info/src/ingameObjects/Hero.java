@@ -62,10 +62,35 @@ public class Hero  extends Character implements IngameObject {
 
 	@Override
 	public void updateGraphic() {
-		switch(status){
-			case 0: setTexture(animationList.get(0));
+		int graphicNR = -1;
+		
+		switch(direction){
+			
+		case 'n': graphicNR = 1;
+			break;
+		case 'o': graphicNR = 2;
+			break;
+		case 's': graphicNR = 3;
+			break;
+		case 'w': graphicNR = 4;
+			break;
+		}
+		graphicNR = graphicNR + 10*status;
+		
+		switch(graphicNR){
+			case 11: setTexture(animationList.get(0));
 				break;
-			case 1: setTexture
+			case 13: setTexture(animationList.get(1));
+				break;
+			case 21: setTexture(animationList.get(6));
+					break;
+			case 22: setTexture(animationList.get(13));
+					break;
+			case 23: setTexture(animationList.get(2));
+					break;
+			case 14: setTexture(animationList.get(10));
+					break;
+			
 		}
 		setPosition(position.getX(), position.getY());
 		

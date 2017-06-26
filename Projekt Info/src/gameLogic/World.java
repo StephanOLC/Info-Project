@@ -114,6 +114,8 @@ public class World implements Runnable{
 				
 			case "Lever": objectList.add(new Lever(new Vektor(x, y), this));
 				break;
+			case "Hero": objectList.add(new Hero(new Vektor(x, y), this));
+				break;
 			
 		}
 	}

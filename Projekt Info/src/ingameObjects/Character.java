@@ -16,7 +16,7 @@ public abstract class Character extends TextureObject {
 	protected Vektor previousPosition;
 	protected int speed;
 	protected int healthPoints;
-	protected int status;
+	protected int status; //1:Idle , 2:running , 3:jumping , 4:attacking
 	protected int timer;
 	protected char team;
 	protected boolean alreadyMoved;
