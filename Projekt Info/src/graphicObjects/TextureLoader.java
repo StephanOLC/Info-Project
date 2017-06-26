@@ -1,12 +1,17 @@
 package graphicObjects;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import javax.imageio.ImageIO;
+
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL12;
 
+import static org.lwjgl.opengl.GL11.*;
 
-//https://stackoverflow.com/questions/10801016/lwjgl-textures-and-strings
 
 public class TextureLoader {
 	private static final int BYTES_PER_PIXEL = 4;//3 for RGB, 4 for RGBA
@@ -30,6 +35,33 @@ public class TextureLoader {
 				
 			}
 		}
+		
+		buffer.flip();
+		
+		int textureID = glGenTextures();
+			glBindTexture(GL_TEXTURE_2D, textureID);
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+			
+		return textureID;
+			
+	}
+	
+	public static BufferedImage loadImage(String path){
+		
+		try {
+			return ImageIO.read(new File(path));
+		} catch (IOException e) {
+			// TODO: handle exception
+		}
+		
+		return null;
 		
 	}
 }

@@ -2,6 +2,7 @@ package graphicObjects;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -15,38 +16,40 @@ import Main.Interface;
 
 public abstract class ClickableObject implements Drawableobject {
 	
-	protected int x,y,width,height;
-	protected String pathnormal, fileformatnormal, pathpressed, fileformatpressed, name;
-	protected Texture texturenormal, texturepressed;
+	protected int x,y,width,height,imageIDnormal, imageIDpressed;
+	protected String pathnormal, pathpressed, name;
 	protected Interface inter;
 	protected boolean pressed,stop;
 	protected List<ClickListener> listener = new CopyOnWriteArrayList<ClickListener>();
 	protected MouseController mousecontroller;
 	
-	public ClickableObject(int x,int y, String path, String fileformat, String name, Interface inter,GameController controller){
+	public ClickableObject(int x,int y, String path, String name, Interface inter,GameController controller){
 		
-		this(x,y,path,fileformat,path,fileformat,name,inter,controller);
+		this(x,y,path,path,name,inter,controller);
 		
 		
 	}
 	
-	public ClickableObject(int x , int y, String pathnormal, String fileforamtnormal, String pathpressed, String fileformatpressed,String name, Interface inter, GameController controller){
+	public ClickableObject(int x , int y, String pathnormal, String pathpressed,String name, Interface inter, GameController controller){
 		
 		this.x = x;
 		this.y = y;
 		this.pathnormal = pathnormal;
-		this.fileformatnormal = fileforamtnormal;
 		this.pathpressed = pathpressed;
-		this.fileformatpressed = fileformatpressed;
 		this.inter = inter;
 		this.name = name;
-		loadtextures();
-		width = texturenormal.getImageWidth();
-		height = texturenormal.getImageHeight();
+		BufferedImage image = TextureLoader.loadImage(pathnormal);
+		width = image.getWidth();
+		height = image.getHeight();
+		imageIDnormal = TextureLoader.loadTexture(image);
+		BufferedImage imagepressed = TextureLoader.loadImage(pathpressed);
+		width = imagepressed.getWidth();
+		height = imagepressed.getHeight();
+		imageIDpressed = TextureLoader.loadTexture(image);
 		
-		if(width != texturepressed.getImageWidth() || height != texturepressed.getImageHeight()){
+		if(width != imagepressed.getWidth() || height != imagepressed.getHeight()){
 			
-			texturepressed = texturenormal;
+			imageIDnormal = imageIDpressed;
 			System.err.println("Height or Width of the pressed texture differs from the height or width of the normal texture");
 			
 		}
@@ -56,38 +59,24 @@ public abstract class ClickableObject implements Drawableobject {
 		
 	}
 	
-	private void loadtextures(){
-		
-		texturenormal = new getTexture().gettexture(fileformatnormal, pathnormal);
-		texturepressed = new getTexture().gettexture(fileformatpressed, pathpressed);
-		if(width != texturepressed.getImageWidth() || height != texturepressed.getImageHeight()){
-			
-			texturepressed = texturenormal;
-			System.err.println("Height or Width of the pressed texture differs from the height or width of the normal texture");
-			
-		}
-		
-		
-	}
-
 	@Override
 	public void draw() {
 		
 		if(pressed){
 			
-			drawtexture(texturepressed);
+			drawtexture(imageIDpressed);
 			
 		}else{
 			
-			drawtexture(texturenormal);
+			drawtexture(imageIDnormal);
 			
 		}
 
 	}
 	
-	public void drawtexture(Texture texture){
+	public void drawtexture(int imageID){
 		
-		texture.bind();
+		glBindTexture(GL_TEXTURE_2D, imageID);
 		glColor3f(1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_QUADS);
@@ -100,7 +89,7 @@ public abstract class ClickableObject implements Drawableobject {
 			glTexCoord2f(0,1);
 			glVertex2i(x, y + height);
 		glEnd();
-		
+		glBindTexture(GL_TEXTURE_2D, 0);
 		
 	}
 	
@@ -128,15 +117,15 @@ public abstract class ClickableObject implements Drawableobject {
 		
 	}
 	
-	public Texture getTexture(){
+	public int getTextureID(){
 		
-		return texturenormal;
+		return imageIDnormal;
 		
 	}
 	
-	public Texture getTexturepressed(){
+	public int getTextureIDpressed(){
 		
-		return texturepressed;
+		return imageIDpressed;
 		
 	}
 	
@@ -152,7 +141,7 @@ public abstract class ClickableObject implements Drawableobject {
 		
 	}
 	
-	protected void setTexturenormal(Texture texture){
+	/**protected void setTexturenormal(Texture texture){
 		
 		pathnormal = "";
 		fileformatnormal = "";
@@ -181,7 +170,7 @@ public abstract class ClickableObject implements Drawableobject {
 		fileformatpressed = fileformat;
 		loadtextures();
 		
-	}
+	}*/
 
 	public String getName(){
 		

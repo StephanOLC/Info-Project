@@ -1,56 +1,45 @@
 package graphicObjects;
 
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glColor3f;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glVertex2f;
-
-import java.awt.image.BufferedImage;
+import org.newdawn.slick.opengl.Texture;
 
 import Interfaces.Drawableobject;
 import Main.Interface;
+import static org.lwjgl.opengl.GL11.*;
 
-public class TextureObject implements Drawableobject {
-
-	protected int x,y,width,height, textureID;
+public abstract class TextureObjectold implements Drawableobject{
+	
+	protected int x,y,width,height;
 	protected float rotation;
 	protected String path, fileformat,name;
-	
-	
-	public TextureObject(int x, int y ,String path, String name,Interface inter ){
+	protected Texture texture;
+
+	public TextureObjectold(int x, int y ,String path,String fileformat, String name,Interface inter ){
 		
 		this.x = x;
 		this.y = y;
 		this.path = path;
+		this.fileformat = fileformat;
 		this.name = name;
-		BufferedImage image = TextureLoader.loadImage(path);
-		width = image.getWidth();
-		height = image.getHeight();
-		textureID = TextureLoader.loadTexture(image);
+		texture = new getTexture().gettexture(fileformat, path);
+		width = texture.getImageWidth();
+		height = texture.getImageHeight();
 		rotation = 0;
 		
 		inter.addDrawableobject(this);
 		
 	}
 	
-	public TextureObject(int x, int y ,int width,int height,float rotation,String path, String name, Interface inter ){
+	public TextureObjectold(int x, int y ,int width,int height,float rotation,String path, String fileformat, String name, Interface inter ){
 		
 		this.x = x;
 		this.y = y;
 		this.height = height;
 		this.width = width;
 		this.rotation = rotation;
+		this.path = path;
+		this.fileformat = fileformat;
 		this.name = name;
-		BufferedImage image = TextureLoader.loadImage(path);
-		width = image.getWidth();
-		height = image.getHeight();
-		textureID = TextureLoader.loadTexture(image);
+		texture = new getTexture().gettexture(fileformat, path);
 		
 		inter.addDrawableobject(this);
 		
@@ -59,7 +48,7 @@ public class TextureObject implements Drawableobject {
 	@Override
 	public void draw() {
 		
-		glBindTexture(GL_TEXTURE_2D, textureID);
+		glBindTexture(GL_TEXTURE_2D, texture.getTextureID());
 		glColor3f(1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glRotatef(rotation, 0, 0, 1);
@@ -77,7 +66,7 @@ public class TextureObject implements Drawableobject {
 		glBindTexture(GL_TEXTURE_2D , 0);
 		
 	}
-
+	
 	public void setPosition(int x, int y){
 		
 		this.x = x;
@@ -95,6 +84,20 @@ public class TextureObject implements Drawableobject {
 	public void setrotation(float rotation){
 		
 		this.rotation = rotation;
+		
+	}
+	
+	protected void newTexture(String path, String fileformat){
+		
+		texture = new getTexture().gettexture(fileformat, path);
+		
+	}
+	
+	protected void setTexture(Texture texture){
+		
+		path = "";
+		fileformat = "";
+		this.texture = texture;
 		
 	}
 	
@@ -135,6 +138,13 @@ public class TextureObject implements Drawableobject {
 		return rotation;
 		
 	}
+	
+	public Texture gettexture(){
+		
+		return texture;
+		
+	}
+
 	@Override
 	public String getName() {
 		

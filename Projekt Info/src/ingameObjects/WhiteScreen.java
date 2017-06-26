@@ -7,7 +7,7 @@ public class WhiteScreen extends TextureObject {
 
 	public WhiteScreen(int x, int y, int width, int height, String Name, Interface inter){
 		
-		super(x, y, width, height, 0f, "Graphics/Buttons/White.png", "png", Name, inter);
+		super(x, y, width, height, 0f, "Graphics/Buttons/White.png", Name, inter);
 		
 	}
 	
