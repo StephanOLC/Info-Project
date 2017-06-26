@@ -48,7 +48,7 @@ public abstract class TextureObject implements Drawableobject{
 	@Override
 	public void draw() {
 		
-		texture.bind();
+		glBindTexture(GL_TEXTURE_2D, texture.getTextureID());
 		glColor3f(1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glRotatef(rotation, 0, 0, 1);
@@ -63,6 +63,7 @@ public abstract class TextureObject implements Drawableobject{
 			glVertex2f(x - 0.5f*width, y + 0.5f*height);
 		glEnd();	
 		glRotatef(-rotation,0,0,1);
+		glBindTexture(GL_TEXTURE_2D , 0);
 		
 	}
 	

@@ -83,7 +83,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
-		new WhiteScreen(320, 500, 1000, 1200, "whiteScreen", inter);
+		//new WhiteScreen(10, 10, 1000, 1200, "whiteScreen", inter);
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
 		clickableObjects.add(startButton);
