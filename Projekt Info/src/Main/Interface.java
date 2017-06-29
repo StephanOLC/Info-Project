@@ -198,7 +198,8 @@ public class Interface {
 				
 			}
 			
-			
+			transx -= movex;
+			transy -= movey;
 			
 			glTranslatef(movex, movey, 0);
 			
