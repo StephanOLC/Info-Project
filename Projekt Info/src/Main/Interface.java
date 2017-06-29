@@ -25,7 +25,7 @@ public class Interface {
 	private int height = 480;
 	private int width = 640;
 	private int fps = 160;
-	private float movex,movey,transx,transy;
+	private float movex,movey,transx,transy,transxmaxpositive,transxmaxnegative,transymaxpositive,transymaxnegative;
 	private List<Drawableobject> Drawableobjects = new CopyOnWriteArrayList<Drawableobject>();
 	private List<Drawableobject> insert = new CopyOnWriteArrayList<Drawableobject>();
 	private Drawableobject back;
@@ -161,14 +161,45 @@ public class Interface {
 		
 	}
 	
+	public void setCameraLimits(float transxmaxpositive, float transxmaxnegative, float transymaxpositiv, float transymaxnegativ){
+		
+		this.transxmaxpositive = transxmaxpositive;
+		this.transxmaxnegative = transxmaxnegative;
+		this.transymaxpositive = transymaxpositiv;
+		this.transymaxnegative = transymaxnegativ;
+		
+	}
 	
 	private void moveCamera(){
 		
 		if(cameramovement){
 			
-			transx -= movex;
-			transy -= movey;
-		
+			if(transx - movex > transxmaxpositive){
+				
+				movex = transxmaxpositive - transx;
+				
+			}
+			
+			if(transy - movey > transymaxpositive){
+				
+				movey = transymaxpositive - transy;
+				
+			}
+			
+			if(transx - movex< transxmaxnegative){
+				
+				movex = transxmaxnegative - transx;
+				
+			}
+			
+			if(transy - movey < transymaxnegative){
+				
+				movey = transymaxnegative - transy;
+				
+			}
+			
+			
+			
 			glTranslatef(movex, movey, 0);
 			
 		}
