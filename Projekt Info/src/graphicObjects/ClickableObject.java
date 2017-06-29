@@ -77,7 +77,7 @@ public abstract class ClickableObject implements Drawableobject {
 	public void drawtexture(int imageID){
 		
 		glBindTexture(GL_TEXTURE_2D, imageID);
-		glColor3f(1, 1, 1);
+		glColor4f(1f, 1f, 1f, 1f);
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0,0);

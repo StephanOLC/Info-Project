@@ -1,15 +1,6 @@
 package graphicObjects;
 
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glColor3f;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glVertex2f;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.image.BufferedImage;
 
@@ -60,7 +51,7 @@ public class TextureObject implements Drawableobject {
 	public void draw() {
 		
 		glBindTexture(GL_TEXTURE_2D, textureID);
-		glColor3f(1, 1, 1);
+		glColor4f(1, 1, 1, 1);
 		glEnable(GL_TEXTURE_2D);
 		glRotatef(rotation, 0, 0, 1);
 		glBegin(GL_QUADS);

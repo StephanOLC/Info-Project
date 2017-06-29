@@ -56,9 +56,13 @@ public class TextureLoader {
 	public static BufferedImage loadImage(String path){
 		
 		try {
+			
 			return ImageIO.read(new File(path));
+			
 		} catch (IOException e) {
-			// TODO: handle exception
+			
+			e.printStackTrace();
+			
 		}
 		
 		return null;
