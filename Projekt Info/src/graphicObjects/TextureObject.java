@@ -95,6 +95,19 @@ public class TextureObject implements Drawableobject {
 		this.height = height;
 		
 	}
+	
+	public int newTexture(String path){
+		
+		BufferedImage image = TextureLoader.loadImage(path);
+		return TextureLoader.loadTexture(image);
+		
+	}
+	
+	public void setTexture(int texture){
+		
+		textureID = texture;
+		
+	}
 
 	@Override
 	public int gety() {

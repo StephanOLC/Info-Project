@@ -106,7 +106,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		}
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
-		world.spawn("Stein", 700, 700);
+		world.spawn("Stein", 500, 500);
 		new Thread(world, "world").start();
 		
 	}
