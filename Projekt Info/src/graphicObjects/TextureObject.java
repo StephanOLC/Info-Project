@@ -76,13 +76,6 @@ public class TextureObject implements Drawableobject {
 		
 	}
 	
-	public void setOutbounds(int width, int height){
-		
-		this.width = width;
-		this.height = height;
-		
-	}
-	
 	public void setrotation(float rotation){
 		
 		this.rotation = rotation;
