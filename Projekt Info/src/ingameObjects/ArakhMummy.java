@@ -16,7 +16,7 @@ public class ArakhMummy extends Character implements IngameObject {
 		this.world = world;
 		healthPoints = 500;
 		speed = 5;
-		status = 1; //1:Idle , 2&3:running , 4:jumping , 5:attacking
+		status = 1;
 		
 	}
 	
@@ -75,24 +75,22 @@ public class ArakhMummy extends Character implements IngameObject {
 	private void jumpAttack(Vektor target){
 		if(position.connectingTo(target).length() < 1.5*speed){
 			world.addHitbox(new CircleHitbox(position.plus(position.connectingTo(target)), 2, 10000, 1));
-			status = 5;
+			status = 4;
 			System.out.println("Hitbox created at x: " + position.plus(position.connectingTo(target)).getX() + " y: " + position.plus(position.connectingTo(target)).getY() + " Radius: " + (speed-1));
 		}
 		else if(position.connectingTo(target).length() < 6*speed){
 			System.out.println("jumping...");
 			movement(jumpTo(target));
-			status = 4;
+			status = 3;
 		}
 		else{
 			movement(goTo(target));
-			if(status != 2)status = 2;
-			else status = 3;
+			status = 2;
 		}
 	}
 
 	@Override
 	public void updateGraphic() {
 		setPosition(position.getX(), position.getY());
-		
 	}
 }
