@@ -9,7 +9,7 @@ public class Level extends TextureObject implements IngameObject {
 	int level;
 	
 	public Level(int level, World world){
-		super(0, 0, "Graphics/icon.png", "png", "Level" ,world.getInterface());
+		super(0, 0, "Graphics/Icon.png", "Level" ,world.getInterface());
 		this.level = level;
 		switch(level){
 		case 0: //spawns hero @start-position,sets up hitboxes for demo-level boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns

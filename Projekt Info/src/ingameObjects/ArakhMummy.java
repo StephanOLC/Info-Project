@@ -10,7 +10,7 @@ public class ArakhMummy extends Character implements IngameObject {
 	
 	public ArakhMummy(Vektor position, World world){
 		
-		super(position.getX(), position.getY(), "Graphics/icon.png", "png", "ArakhMummy" ,world.getInterface());
+		super(position.getX(), position.getY(), "Graphics/icon.png", "ArakhMummy" ,world.getInterface());
 		
 		this.position = position;
 		this.world = world;

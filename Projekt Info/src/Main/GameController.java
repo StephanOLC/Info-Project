@@ -13,6 +13,7 @@ import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
 import ingameObjects.StartButton;
+import ingameObjects.WhiteScreen;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
@@ -82,6 +83,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
+		//new WhiteScreen(-10, -10, 1000, 1200, "whiteScreen", inter);
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
 		clickableObjects.add(startButton);
@@ -97,7 +99,11 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.resetCamera();
 		inter.setCameramoveable(true);
 		clearClickableObjects();
+		inter.setCameraLimits(500f, -500f, 500f, -500f);
 		
+		if(inter == null){
+			System.out.println("Stephan ist boosted");
+		}
 		World  world = new World(inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
