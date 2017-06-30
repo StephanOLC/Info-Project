@@ -11,20 +11,33 @@ public class TextureObject implements Drawableobject {
 
 	protected int x,y,width,height, textureID;
 	protected float rotation;
-	protected String path, fileformat,name;
+	protected String name;
 	
 	
 	public TextureObject(int x, int y ,String path, String name,Interface inter ){
 		
 		this.x = x;
 		this.y = y;
-		this.path = path;
 		this.name = name;
 		BufferedImage image = TextureLoader.loadImage(path);
 		width = image.getWidth();
 		height = image.getHeight();
 		textureID = TextureLoader.loadTexture(image);
 		rotation = 0;
+		
+		inter.addDrawableobject(this);
+		
+	}
+	
+	public TextureObject (int x, int y,int width, int height, int texture, String name, Interface inter){
+		
+		this.x = x;
+		this.y = y;
+		this.name = name;
+		textureID = texture;
+		rotation = 0;
+		this.width = width;
+		this.height = height;
 		
 		inter.addDrawableobject(this);
 		
