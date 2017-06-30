@@ -19,11 +19,11 @@ public class World implements Runnable{
 	boolean run = true;
 	
 	public World(Interface inter){
+		this.inter = inter;
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
 		level = new Level(0, this);
-		this.inter = inter;
 	}
 	
 	public Interface getInterface(){

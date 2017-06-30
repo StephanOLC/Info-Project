@@ -12,7 +12,7 @@ public class Stein extends TextureObject implements IngameObject {
 	private int healthPoints;
 	
 	public Stein(Vektor position, World world){
-		super(position.getX(), position.getY(), "Graphics/icon.png", "png", "Stein" ,world.getInterface());
+		super(position.getX(), position.getY(), "Graphics/icon.png", "Stein" ,world.getInterface());
 		this.position = position;
 		this.world = world;
 		this.position = position;

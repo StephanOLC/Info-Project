@@ -8,7 +8,7 @@ import gameLogic.World;
 public class Hero  extends Character implements IngameObject {
 	
 	public Hero(Vektor position, World world){
-		super(position.getX(), position.getY(), "Graphics/Trollface.png", "png", "Hero" ,world.getInterface());
+		super(position.getX(), position.getY(), "Graphics/Trollface.png", "Hero" ,world.getInterface());
 		this.world = world;
 		this.position = position;
 		healthPoints = 1000;

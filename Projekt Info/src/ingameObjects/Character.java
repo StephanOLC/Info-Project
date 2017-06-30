@@ -23,15 +23,15 @@ public abstract class Character extends TextureObject {
 	protected char direction;
 	protected ArrayList <Texture> animationList;
 	
-	public Character(int x, int y, int width, int height, float rotation, String path, String fileformat, String name, Interface inter) {
+	public Character(int x, int y, int width, int height, float rotation, String path, String name, Interface inter) {
 		
-		super(x, y, width, height, rotation, path, fileformat, name, inter);
+		super(x, y, width, height, rotation, path, name, inter);
 		
 	}
 	
-	public Character(int x, int y ,String path,String fileformat, String name,Interface inter ){
+	public Character(int x, int y ,String path, String name,Interface inter ){
 		
-		super(x, y, path, fileformat, name, inter);
+		super(x, y, path, name, inter);
 		
 	}
 
