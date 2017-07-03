@@ -68,8 +68,7 @@ public class Lever extends TextureObject implements IngameObject {
 
 	@Override
 	public void updateGraphic() {
-		setPosition(position.getX(), position.getY());
-		
+		setPosition(position.getX(), position.getY());		}
 	}
 
 }
