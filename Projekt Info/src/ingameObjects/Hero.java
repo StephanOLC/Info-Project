@@ -13,6 +13,7 @@ public class Hero  extends Character implements IngameObject {
 		this.position = position;
 		healthPoints = 1000;
 		team = 'h';
+		/*
 		animationList.add(loadtexture("Graphics/Protagonist/Stance/Stance_forward.png","png")); // 0
 		animationList.add(loadtexture("Graphics/Protagonist/Stance/Stance_backward.png","png")); // 1
 		animationList.add(loadtexture("Graphics/Protagonist/Walking/Forward/Forward1.png","png")); // 2
@@ -29,6 +30,7 @@ public class Hero  extends Character implements IngameObject {
 		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts1","png")); // 13
 		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts2","png")); // 14
 		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts3","png")); // 15
+		*/
 	}
 
 	public Vektor getPosition(){

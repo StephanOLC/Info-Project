@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Main.Interface;
 import ingameObjects.ArakhMummy;
+import ingameObjects.Hero;
 import ingameObjects.IngameObject;
 import ingameObjects.Level;
 import ingameObjects.Lever;
