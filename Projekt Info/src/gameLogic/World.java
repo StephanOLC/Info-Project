@@ -48,6 +48,12 @@ public class World implements Runnable{
 		
 	}
 	
+	public void setInput(boolean[] input){
+		//keynumber see in KEyboardController
+		
+		
+	}
+	
 	public void tick(){
 		System.out.println("_______________tick__________________");
 		updateHitboxRegister();
