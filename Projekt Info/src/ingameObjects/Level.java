@@ -18,22 +18,22 @@ public class Level extends TextureObject implements IngameObject {
 		case 0: //spawns hero @start-position,sets up hitboxes for demo-level boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns
 			textureList = new ArrayList<Integer>();
 			//Hero-textures first, stone second, then small to large enemies!
-			textureList.add(newTexture("Graphics/Protagonist/Stance/Stance_forward.png")); // 0
-			textureList.add(newTexture("Graphics/Protagonist/Stance/Stance_backward.png")); // 1
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Forward/Forward1.png")); // 2
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Forward/Forward2.png")); // 3
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Forward/Forward3.png")); // 4
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Forward/Forward4.png")); // 5
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Backward/Backward1")); // 6
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Backward/Backward2")); // 7
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Backward/Backward3")); // 8
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Backward/Backward4")); // 9
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Left/Left1")); // 10
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Left/Left2")); // 11
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Left/Left3")); // 12
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Right/Rechts1")); // 13
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Right/Rechts2")); // 14
-			textureList.add(newTexture("Graphics/Protagonist/Walking/Right/Rechts3")); // 15
+			textureList.add(newTexture("Graphics/Hero/Stance_forward.png")); // 0
+			textureList.add(newTexture("Graphics/Hero/Stance_backward.png")); // 1
+			textureList.add(newTexture("Graphics/Hero/Forward1.png")); // 2
+			textureList.add(newTexture("Graphics/Hero/Forward2.png")); // 3
+			textureList.add(newTexture("Graphics/Hero/Forward3.png")); // 4
+			textureList.add(newTexture("Graphics/Hero/Forward4.png")); // 5
+			textureList.add(newTexture("Graphics/Hero/Backward1")); // 6
+			textureList.add(newTexture("Graphics/Hero/Backward2")); // 7
+			textureList.add(newTexture("Graphics/Hero/Backward3")); // 8
+			textureList.add(newTexture("Graphics/Hero/Backward4")); // 9
+			textureList.add(newTexture("Graphics/Hero/Left1")); // 10
+			textureList.add(newTexture("Graphics/Hero/Left2")); // 11
+			textureList.add(newTexture("Graphics/Hero/Left3")); // 12
+			textureList.add(newTexture("Graphics/Hero/Rechts1")); // 13
+			textureList.add(newTexture("Graphics/Hero/Rechts2")); // 14
+			textureList.add(newTexture("Graphics/Hero/Rechts3")); // 15
 			break;	
 		}
 	}
