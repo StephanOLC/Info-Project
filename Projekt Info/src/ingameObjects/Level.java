@@ -19,12 +19,12 @@ public class Level extends TextureObject implements IngameObject {
 			textureList = new ArrayList<Integer>();
 			//Hero-textures first, stone second, then small to large enemies!
 			textureList.add(newTexture("Graphics/Hero/Stance_forward.png")); // 0
-			textureList.add(newTexture("Graphics/Hero/Stance_backward.png")); // 1
+			textureList.add(newTexture("Graphics/Hero/Stance_behind.png")); // 1
 			textureList.add(newTexture("Graphics/Hero/Forward1.png")); // 2
 			textureList.add(newTexture("Graphics/Hero/Forward2.png")); // 3
 			textureList.add(newTexture("Graphics/Hero/Forward3.png")); // 4
 			textureList.add(newTexture("Graphics/Hero/Forward4.png")); // 5
-			textureList.add(newTexture("Graphics/Hero/Backward1")); // 6
+			textureList.add(newTexture("Graphics/Hero/behind1")); // 6
 			textureList.add(newTexture("Graphics/Hero/Backward2")); // 7
 			textureList.add(newTexture("Graphics/Hero/Backward3")); // 8
 			textureList.add(newTexture("Graphics/Hero/Backward4")); // 9
