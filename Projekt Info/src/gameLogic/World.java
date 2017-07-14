@@ -18,6 +18,7 @@ public class World implements Runnable{
 	Level level;
 	Interface inter;
 	boolean run = true;
+	Hero hero;
 	
 	public World(int level, Interface inter){
 		this.inter = inter;
@@ -50,9 +51,9 @@ public class World implements Runnable{
 	}
 	
 	public void setInput(boolean[] input){
-		//keynumber see in KEyboardController
-		
-		
+		if(hero != null){
+			hero.setInput(input);
+		}
 	}
 	
 	public void tick(){
@@ -120,7 +121,9 @@ public class World implements Runnable{
 				
 			case "Lever": objectList.add(new Lever(new Vektor(x, y), this));
 				break;
-			case "Hero": objectList.add(new Hero(new Vektor(x, y),level.getTextureList(), this));
+			case "Hero": 
+					hero = new Hero(new Vektor(x, y),level.getTextureList(), this);
+					objectList.add(hero);
 				break;
 			
 		}

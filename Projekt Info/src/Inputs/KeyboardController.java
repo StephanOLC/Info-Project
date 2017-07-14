@@ -40,7 +40,7 @@ public class KeyboardController implements Runnable{
 	
 	public void direction(){
 		
-		boolean[] pressed = new boolean[5]; //1:w; 2:a; 3:s; 4:d; 5:e;
+		boolean[] pressed = new boolean[5]; //1:w; 2:a; 3:s; 4:d; 5:e; boosted? <-wasd
 		
 		pressed[0] = Keyboard.isKeyDown(Keyboard.KEY_W);
 		pressed[1] = Keyboard.isKeyDown(Keyboard.KEY_A);
