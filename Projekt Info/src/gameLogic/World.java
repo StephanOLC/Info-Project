@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Main.Interface;
 import ingameObjects.ArakhMummy;
+import ingameObjects.Hero;
 import ingameObjects.IngameObject;
 import ingameObjects.Level;
 import ingameObjects.Lever;
@@ -18,12 +19,12 @@ public class World implements Runnable{
 	Interface inter;
 	boolean run = true;
 	
-	public World(Interface inter){
+	public World(int level, Interface inter){
 		this.inter = inter;
 		hitboxRegister = new ArrayList<Hitbox>();
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
-		level = new Level(0, this);
+		this.level = new Level(level, this);
 	}
 	
 	public Interface getInterface(){
@@ -55,7 +56,6 @@ public class World implements Runnable{
 	}
 	
 	public void tick(){
-		System.out.println("_______________tick__________________");
 		updateHitboxRegister();
 		for(IngameObject object : objectList){
 			object.tick();
@@ -120,7 +120,7 @@ public class World implements Runnable{
 				
 			case "Lever": objectList.add(new Lever(new Vektor(x, y), this));
 				break;
-			case "Hero": objectList.add(new Hero(new Vektor(x, y), this));
+			case "Hero": objectList.add(new Hero(new Vektor(x, y),level.getTextureList(), this));
 				break;
 			
 		}

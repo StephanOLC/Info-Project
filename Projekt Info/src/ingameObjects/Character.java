@@ -2,8 +2,6 @@ package ingameObjects;
 
 import java.util.ArrayList;
 
-import org.newdawn.slick.opengl.Texture;
-
 import Main.Interface;
 import gameLogic.Vektor;
 import gameLogic.World;
@@ -21,7 +19,7 @@ public abstract class Character extends TextureObject {
 	protected char team;
 	protected boolean alreadyMoved;
 	protected char direction;
-	protected ArrayList <Texture> animationList;
+	protected ArrayList <Integer> textureList;
 	
 	public Character(int x, int y, int width, int height, float rotation, String path, String name, Interface inter) {
 		
