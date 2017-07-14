@@ -35,6 +35,7 @@ public class Level extends TextureObject implements IngameObject {
 			textureList.add(newTexture("Graphics/Hero/Rechts2.png")); // 14
 			textureList.add(newTexture("Graphics/Hero/Rechts3.png")); // 15
 			break;	
+			
 		}
 	}
 
