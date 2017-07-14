@@ -4,8 +4,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Interface inter = new Interface();
-		new GameController(inter);
+		SoundInterface soundinter = new SoundInterface();
+		Interface inter = new Interface(soundinter);
+		new GameController(inter,soundinter);
 		inter.run();
 
 	}

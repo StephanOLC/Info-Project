@@ -34,16 +34,16 @@ public class Interface {
 	private GameController controller;
 	private MouseController mousecontroller;
 	
-	public Interface(){
+	public Interface(SoundInterface soundinter){
 		
 		run = true;
 		closerequested = false;
 		cameramovement = true;
-		init();
+		init(soundinter);
 		
 	}
 	
-	public void init(){
+	public void init(SoundInterface soundinter){
 		
 		try {
 			
@@ -64,6 +64,7 @@ public class Interface {
 			}
 			
 			Display.create();
+			soundinter.init();
 			
 		} catch (LWJGLException e) {
 		

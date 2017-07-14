@@ -13,11 +13,11 @@ import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
 import ingameObjects.StartButton;
-import ingameObjects.WhiteScreen;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
 	private Interface inter;
+	private SoundInterface soundinter;
 	private KeyboardController keyboardcontroller;
 	private MouseController mousecontroller;
 	private World world;
@@ -26,17 +26,18 @@ public class GameController implements KeyboardListener,ClickListener{
 	private String worldname;
 	private boolean changeworld;
 	
-	public GameController(Interface inter){
+	public GameController(Interface inter,SoundInterface soundinter){
 			
-		init(inter);
+		init(inter, soundinter);
 		startThreads();
 		keyboardcontroller.addkeyboardlistener(this);
 		
 	}
 	
-	public void init(Interface inter){
+	public void init(Interface inter,SoundInterface soundinter){
 		
 		this.inter = inter;
+		this.soundinter = soundinter;
 		inter.setGamecontroller(this);
 		keyboardcontroller = new KeyboardController(inter, this);
 		new Thread(keyboardcontroller).start();
@@ -79,10 +80,12 @@ public class GameController implements KeyboardListener,ClickListener{
 	
 	private void startscreen(){
 		
+		
 		inter.clear();
 		inter.resetCamera();
 		inter.setCameramoveable(false);
 		clearClickableObjects();
+		soundinter.playSound("Sounds/Egypt.mid");
 		
 		//new WhiteScreen(-10, -10, 1000, 1200, "whiteScreen", inter);
 		StartButton startButton = new StartButton("startbutton", inter, this); 
@@ -101,10 +104,6 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(true);
 		clearClickableObjects();
 		inter.setCameraLimits(500f, -500f, 500f, -500f);
-		
-		if(inter == null){
-			System.out.println("Stephan ist boosted");
-		}
 
 		World  world = new World(0, inter); 
 		world.spawn("Arakh", 0, 0);
@@ -157,6 +156,12 @@ public class GameController implements KeyboardListener,ClickListener{
 		}
 		
 		return false;
+		
+	}
+	
+	public SoundInterface getSoundInterface(){
+		
+		return soundinter;
 		
 	}
 	
