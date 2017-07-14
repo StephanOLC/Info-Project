@@ -19,21 +19,21 @@ public class Level extends TextureObject implements IngameObject {
 			textureList = new ArrayList<Integer>();
 			//Hero-textures first, stone second, then small to large enemies!
 			textureList.add(newTexture("Graphics/Hero/Stance_forward.png")); // 0
-			textureList.add(newTexture("Graphics/Hero/Stance_behind.png")); // 1
+			textureList.add(newTexture("Graphics/Hero/Backward.png")); // 1
 			textureList.add(newTexture("Graphics/Hero/Forward1.png")); // 2
 			textureList.add(newTexture("Graphics/Hero/Forward2.png")); // 3
 			textureList.add(newTexture("Graphics/Hero/Forward3.png")); // 4
 			textureList.add(newTexture("Graphics/Hero/Forward4.png")); // 5
-			textureList.add(newTexture("Graphics/Hero/behind1")); // 6
-			textureList.add(newTexture("Graphics/Hero/Backward2")); // 7
-			textureList.add(newTexture("Graphics/Hero/Backward3")); // 8
-			textureList.add(newTexture("Graphics/Hero/Backward4")); // 9
-			textureList.add(newTexture("Graphics/Hero/Left1")); // 10
-			textureList.add(newTexture("Graphics/Hero/Left2")); // 11
-			textureList.add(newTexture("Graphics/Hero/Left3")); // 12
-			textureList.add(newTexture("Graphics/Hero/Rechts1")); // 13
-			textureList.add(newTexture("Graphics/Hero/Rechts2")); // 14
-			textureList.add(newTexture("Graphics/Hero/Rechts3")); // 15
+			textureList.add(newTexture("Graphics/Hero/Backward1.png")); // 6
+			textureList.add(newTexture("Graphics/Hero/Backward2.png")); // 7
+			textureList.add(newTexture("Graphics/Hero/Backward3.png")); // 8
+			textureList.add(newTexture("Graphics/Hero/Backward4.png")); // 9
+			textureList.add(newTexture("Graphics/Hero/Left1.png")); // 10
+			textureList.add(newTexture("Graphics/Hero/Left2.png")); // 11
+			textureList.add(newTexture("Graphics/Hero/Left3.png")); // 12
+			textureList.add(newTexture("Graphics/Hero/Rechts1.png")); // 13
+			textureList.add(newTexture("Graphics/Hero/Rechts2.png")); // 14
+			textureList.add(newTexture("Graphics/Hero/Rechts3.png")); // 15
 			break;	
 		}
 	}
