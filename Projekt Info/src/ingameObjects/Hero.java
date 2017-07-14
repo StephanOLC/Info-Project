@@ -7,28 +7,13 @@ import gameLogic.World;
 
 public class Hero  extends Character implements IngameObject {
 	
-	public Hero(Vektor position, World world){
-		super(position.getX(), position.getY(), "Graphics/Trollface.png", "Hero" ,world.getInterface());
+	public Hero(Vektor position, ArrayList <Integer> textureList, World world){
+		super(position.getX(), position.getY(), "Graphics/Protagonist/Stance/Stance_forward.png", "Hero" ,world.getInterface());
 		this.world = world;
 		this.position = position;
+		this.textureList = textureList;
 		healthPoints = 1000;
 		team = 'h';
-		animationList.add(loadtexture("Graphics/Protagonist/Stance/Stance_forward.png","png")); // 0
-		animationList.add(loadtexture("Graphics/Protagonist/Stance/Stance_backward.png","png")); // 1
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Forward/Forward1.png","png")); // 2
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Forward/Forward2.png","png")); // 3
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Forward/Forward3.png","png")); // 4
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Forward/Forward4.png","png")); // 5
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Backward/Backward1","png")); // 6
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Backward/Backward2","png")); // 7
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Backward/Backward3","png")); // 8
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Backward/Backward4","png")); // 9
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Left/Left1","png")); // 10
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Left/Left2","png")); // 11
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Left/Left3","png")); // 12
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts1","png")); // 13
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts2","png")); // 14
-		animationList.add(loadtexture("Graphics/Protagonist/Walking/Right/Rechts3","png")); // 15
 	}
 
 	public Vektor getPosition(){
@@ -51,7 +36,7 @@ public class Hero  extends Character implements IngameObject {
 	public void tick() {
 		collision(world.detectCollissionType(position));
 		updateGraphic();
-		//stuff that hero should do in a tick - implement controller communication here here
+		//stuff that hero should do in a tick - implement controller communication here
 
 	}
 
@@ -64,32 +49,60 @@ public class Hero  extends Character implements IngameObject {
 	public void updateGraphic() {
 		int graphicNR = -1;
 		
+		if(timer <= 3){
+			graphicNR = timer;
+		}
+		else{
+			timer = 0;
+			graphicNR = timer;
+		}
+		
 		switch(direction){
 			
-		case 'n': graphicNR = 1;
+		case 'n': graphicNR = graphicNR + 10;
 			break;
-		case 'o': graphicNR = 2;
+		case 'o': graphicNR = graphicNR + 20;
 			break;
-		case 's': graphicNR = 3;
+		case 's': graphicNR = graphicNR + 30;
 			break;
-		case 'w': graphicNR = 4;
+		case 'w': graphicNR = graphicNR + 40;
 			break;
 		}
-		graphicNR = graphicNR + 10*status;
+		graphicNR = graphicNR + 100*status;
 		
 		switch(graphicNR){
-			case 11: setTexture(animationList.get(0));
+			case 110: setTexture(textureList.get(0));
 				break;
-			case 13: setTexture(animationList.get(1));
+			case 130: setTexture(textureList.get(1));
 				break;
-			case 21: setTexture(animationList.get(6));
-					break;
-			case 22: setTexture(animationList.get(13));
-					break;
-			case 23: setTexture(animationList.get(2));
-					break;
-			case 14: setTexture(animationList.get(10));
-					break;
+			case 210: setTexture(textureList.get(6));
+				break;
+			case 211: setTexture(textureList.get(7));
+				break;
+			case 212: setTexture(textureList.get(8));
+				break;
+			case 213: setTexture(textureList.get(9));
+				break;
+			case 220: setTexture(textureList.get(13));
+				break;
+			case 221: setTexture(textureList.get(14));
+				break;
+			case 222: setTexture(textureList.get(15));
+				break;
+			case 230: setTexture(textureList.get(2));
+				break;
+			case 231: setTexture(textureList.get(3));
+				break;
+			case 232: setTexture(textureList.get(4));
+				break;
+			case 233: setTexture(textureList.get(5));
+				break;
+			case 240: setTexture(textureList.get(10));
+				break;
+			case 241: setTexture(textureList.get(11));
+				break;
+			case 242: setTexture(textureList.get(12));
+				break;
 			
 		}
 		setPosition(position.getX(), position.getY());
