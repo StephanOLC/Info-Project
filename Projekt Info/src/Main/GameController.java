@@ -20,9 +20,10 @@ public class GameController implements KeyboardListener,ClickListener{
 	private Interface inter;
 	private KeyboardController keyboardcontroller;
 	private MouseController mousecontroller;
+	private World world;
 	private List<Drawableobject> Drawableobjects = new CopyOnWriteArrayList<Drawableobject>();
 	private List<ClickableObject> clickableObjects = new CopyOnWriteArrayList<ClickableObject>();
-	private String world;
+	private String worldname;
 	private boolean changeworld;
 	
 	public GameController(Interface inter){
@@ -37,7 +38,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		
 		this.inter = inter;
 		inter.setGamecontroller(this);
-		keyboardcontroller = new KeyboardController(inter);
+		keyboardcontroller = new KeyboardController(inter, this);
 		new Thread(keyboardcontroller).start();
 		mousecontroller = new MouseController(inter);
 		inter.setMouseController(mousecontroller);
@@ -48,7 +49,7 @@ public class GameController implements KeyboardListener,ClickListener{
 	
 	public void changeWorld(String Worldname){
 		
-		world = Worldname;
+		worldname = Worldname;
 		changeworld = true;
 		
 		System.out.println("changed world to" + Worldname);
@@ -59,7 +60,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		
 		if(changeworld){
 			
-			switch(world){
+			switch(worldname){
 			
 			case"startscreen":
 				startscreen();
@@ -104,6 +105,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		if(inter == null){
 			System.out.println("Stephan ist boosted");
 		}
+
 		World  world = new World(0, inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);
@@ -167,6 +169,16 @@ public class GameController implements KeyboardListener,ClickListener{
 	public KeyboardController getKeyboardController(){
 		
 		return keyboardcontroller;
+		
+	}
+	
+	public void notifyWorldKeyboard(boolean[] keys){
+		
+		if(world != null){
+			
+			world.setInput(keys);
+			
+		}
 		
 	}
 

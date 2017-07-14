@@ -97,6 +97,7 @@ public class Interface {
 			
 			updateGamecontroller();
 			updateMouse();
+			setKeyboardGamemechanic();
 			getmovement();
 			moveCamera();
 			draw();
@@ -106,6 +107,12 @@ public class Interface {
 		}
 		
 		close();
+		
+	}
+	
+	public void setKeyboardGamemechanic(){
+		
+		controller.getKeyboardController().direction();
 		
 	}
 	
