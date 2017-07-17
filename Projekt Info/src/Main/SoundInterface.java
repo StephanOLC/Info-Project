@@ -1,45 +1,57 @@
 package Main;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.openal.AL;
-import org.lwjgl.util.WaveData;
+import org.newdawn.slick.openal.Audio; 
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
-import static org.lwjgl.openal.AL10.*;
-
-public class SoundInterface {
-	
-	public void init(){
+class SoundInterface {
 		
-		try {
-			AL.create();
-		} catch (LWJGLException e) {
+	 List<Audio> audiolist;
+	 
+	 public void init(){
+		 
+		 audiolist = new ArrayList<Audio>();
+		 
+		 
+	 }
+	 
+	 public int loadAudio(String path, String fileformat){
+		 
+		 
+		 try {
+			Audio audionew = AudioLoader.getAudio(fileformat, ResourceLoader.getResourceAsStream(path));
+			int index =  audiolist.size();
+			audiolist.add(index, audionew);
+			return index;
 			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	}
-	
-	public void playSound(String File) {
-		
-		try {
-			
-			WaveData sound = WaveData.create(new BufferedInputStream(new FileInputStream(File)));
-			
-			int buffer = alGenBuffers();
-			alBufferData(buffer, sound.format , sound.data, sound.samplerate);
-			sound.dispose();
-			int source = alGenSources();
-			alSourcei(source, AL_BUFFER, buffer);
-			
-		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		}
-		
-	}
+		 
+		 return -1;
+		 
+	 }
+	 
+	 public void playAudio(int index){
+		 
+		 audiolist.get(index).playAsSoundEffect(1.0f, 1.0f, false);
+	 
+	 }
+	 
+	 public void playAudio(int index, float pitch, float gain, boolean loop){
+		 
+		 audiolist.get(index).playAsSoundEffect(pitch, gain, loop);
+		 
+	 }
+	 
+	 public void stopaudio(int index){
+		 
+		 audiolist.get(index).stop();
+		 
+	 }
 	
 }
