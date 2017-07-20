@@ -3,6 +3,7 @@ package Main;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,15 +51,9 @@ class SoundInterface {
 		
 		int buffer = AL10.alGenBuffers();
 		bufferedSounds.add(buffer);
-		WaveData waveFile;
-		try {
-			waveFile = WaveData.create(new FileInputStream(new File(path)));
-			AL10.alBufferData(buffer, waveFile.format, waveFile.data, waveFile.samplerate);
-			waveFile.dispose();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		WaveData waveFile = WaveData.create(path);
+		AL10.alBufferData(buffer, waveFile.format, waveFile.data, waveFile.samplerate);
+		waveFile.dispose();
 		return buffer;
 		
 		

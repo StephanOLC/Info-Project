@@ -89,7 +89,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		clearClickableObjects();
 		
 		SoundSource sound = new SoundSource(0, 0);
-		sound.playSoundeffect(SoundInterface.loadSound("Sounds/bounce.wav"));
+		sound.playSoundeffect(SoundInterface.loadSound("Audio/test.wav"));
 		
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
