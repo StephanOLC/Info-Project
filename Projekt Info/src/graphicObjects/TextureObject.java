@@ -4,12 +4,14 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.image.BufferedImage;
 
+import org.lwjgl.openal.AL10;
+
 import Interfaces.Drawableobject;
 import Main.Interface;
 
 public class TextureObject implements Drawableobject {
 
-	protected int x,y,width,height, textureID;
+	protected int x,y,width,height, textureID, soundSourceID;
 	protected float rotation;
 	protected String name;
 	
@@ -24,6 +26,7 @@ public class TextureObject implements Drawableobject {
 		height = image.getHeight();
 		textureID = TextureLoader.loadTexture(image);
 		rotation = 0;
+		initSoundsource();
 		
 		inter.addDrawableobject(this);
 		
@@ -38,6 +41,7 @@ public class TextureObject implements Drawableobject {
 		rotation = 0;
 		this.width = width;
 		this.height = height;
+		initSoundsource();
 		
 		inter.addDrawableobject(this);
 		
@@ -55,8 +59,31 @@ public class TextureObject implements Drawableobject {
 		width = image.getWidth();
 		height = image.getHeight();
 		textureID = TextureLoader.loadTexture(image);
+		initSoundsource();
 		
 		inter.addDrawableobject(this);
+		
+	}
+	
+	public void initSoundsource(){
+		
+		soundSourceID = AL10.alGenSources();
+		AL10.alSourcef(soundSourceID, AL10.AL_GAIN, 1);
+		AL10.alSourcef(soundSourceID, AL10.AL_PITCH, 1);
+		AL10.alSource3f(soundSourceID, AL10.AL_POSITION, x, y, 0);
+		
+	}
+	
+	public void playSoundeffect(int sound){
+		
+		AL10.alSourcei(soundSourceID, AL10.AL_BUFFER, sound);
+		AL10.alSourcePlay(soundSourceID);
+		
+	}
+	
+	public void deleteSoundsource(){
+		
+		AL10.alDeleteSources(soundSourceID);
 		
 	}
 	
@@ -145,6 +172,7 @@ public class TextureObject implements Drawableobject {
 		return rotation;
 		
 	}
+	
 	@Override
 	public String getName() {
 		

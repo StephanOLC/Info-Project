@@ -1,57 +1,67 @@
 package Main;
 
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.newdawn.slick.openal.Audio; 
-import org.newdawn.slick.openal.AudioLoader;
-import org.newdawn.slick.util.ResourceLoader;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.openal.AL;
+import org.lwjgl.openal.AL10;
+import org.lwjgl.util.WaveData;
 
 class SoundInterface {
 		
-	 List<Audio> audiolist;
-	 
-	 public void init(){
-		 
-		 audiolist = new ArrayList<Audio>();
-		 
-		 
-	 }
-	 
-	 public int loadAudio(String path, String fileformat){
-		 
-		 
-		 try {
-			Audio audionew = AudioLoader.getAudio(fileformat, ResourceLoader.getResourceAsStream(path));
-			int index =  audiolist.size();
-			audiolist.add(index, audionew);
-			return index;
-			
-		} catch (IOException e) {
+	static List<Integer> bufferedSounds = new ArrayList<Integer>();
+	
+	public static void init(){
+		
+		try {
+			AL.create();
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
-		 return -1;
-		 
-	 }
-	 
-	 public void playAudio(int index){
-		 
-		 audiolist.get(index).playAsSoundEffect(1.0f, 1.0f, false);
-	 
-	 }
-	 
-	 public void playAudio(int index, float pitch, float gain, boolean loop){
-		 
-		 audiolist.get(index).playAsSoundEffect(pitch, gain, loop);
-		 
-	 }
-	 
-	 public void stopaudio(int index){
-		 
-		 audiolist.get(index).stop();
-		 
-	 }
+		
+	}
+	
+	public static void setListenerData(){
+		
+		AL10.alListener3f(AL10.AL_POSITION, 0, 0, 0);
+		AL10.alListener3f(AL10.AL_VELOCITY, 0, 0, 0);
+		
+		
+	}
+	
+	public static void close(){
+		
+		for(int buffer  : bufferedSounds){
+			
+			AL10.alDeleteBuffers(buffer);
+			
+		}
+		
+		AL.destroy();
+		
+	}
+	
+	public static int loadSound(String path){
+		
+		int buffer = AL10.alGenBuffers();
+		bufferedSounds.add(buffer);
+		WaveData waveFile;
+		try {
+			waveFile = WaveData.create(new FileInputStream(new File(path)));
+			AL10.alBufferData(buffer, waveFile.format, waveFile.data, waveFile.samplerate);
+			waveFile.dispose();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return buffer;
+		
+		
+	}
 	
 }

@@ -12,6 +12,7 @@ import Interfaces.KeyboardListener;
 import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
+import graphicObjects.SoundSource;
 import ingameObjects.StartButton;
 
 public class GameController implements KeyboardListener,ClickListener{
@@ -26,23 +27,24 @@ public class GameController implements KeyboardListener,ClickListener{
 	private String worldname;
 	private boolean changeworld;
 	
-	public GameController(Interface inter,SoundInterface soundinter){
+	public GameController(Interface inter){
 			
-		init(inter, soundinter);
+		init(inter);
 		startThreads();
 		keyboardcontroller.addkeyboardlistener(this);
 		
 	}
 	
-	public void init(Interface inter,SoundInterface soundinter){
+	public void init(Interface inter){
 		
 		this.inter = inter;
-		this.soundinter = soundinter;
 		inter.setGamecontroller(this);
 		keyboardcontroller = new KeyboardController(inter, this);
 		new Thread(keyboardcontroller).start();
 		mousecontroller = new MouseController(inter);
 		inter.setMouseController(mousecontroller);
+		SoundInterface.init();
+		SoundInterface.setListenerData();
 		
 		changeWorld("startscreen");
 		
@@ -85,6 +87,9 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.resetCamera();
 		inter.setCameramoveable(false);
 		clearClickableObjects();
+		
+		SoundSource sound = new SoundSource(0, 0);
+		sound.playSoundeffect(SoundInterface.loadSound("Sounds/bounce.wav"));
 		
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
