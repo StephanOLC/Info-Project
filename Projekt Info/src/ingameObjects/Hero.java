@@ -39,7 +39,7 @@ public class Hero  extends Character implements IngameObject {
 		collision(world.detectCollissionType(position));
 		updateGraphic();
 		//stuff that hero should do in a tick
-		
+		movement(goTo(inputDirection));
 		
 	}
 	
@@ -63,6 +63,22 @@ public class Hero  extends Character implements IngameObject {
 		else if(!input[0] && !input[1] && input[2] && !input[3]){
 			//S
 			inputDirection = new Vektor(0, 100);
+		}
+		else if(!input[0] && !input[1] && input[2] && input[3]){
+			//SO
+			inputDirection = new Vektor(100, 100);
+		}
+		else if(!input[0] && !input[1] && !input[2] && input[3]){
+			//O
+			inputDirection = new Vektor(100, 0);
+		}
+		else if(input[0] && !input[1] && !input[2] && input[3]){
+			//NO
+			inputDirection = new Vektor(100, -100);
+		}
+		else {
+			//AFK
+			inputDirection = new Vektor(0, 0);
 		}
 	}
 

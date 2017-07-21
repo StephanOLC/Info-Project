@@ -129,6 +129,10 @@ public class World implements Runnable{
 		}
 	}
 	
+	public Hero getHero(){
+		return hero;
+	}
+	
 	public void deathNote(IngameObject corpse){
 		deathNote.add(corpse);
 	}

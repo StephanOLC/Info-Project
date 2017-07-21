@@ -37,6 +37,8 @@ public class Level extends TextureObject implements IngameObject {
 			break;	
 			
 		}
+		
+		world.spawn("Hero", 10, 10);
 	}
 
 	@Override
