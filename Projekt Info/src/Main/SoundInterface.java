@@ -8,7 +8,7 @@ import org.lwjgl.openal.AL;
 import org.lwjgl.openal.AL10;
 import org.lwjgl.util.WaveData;
 
-class SoundInterface {
+public class SoundInterface {
 		
 	static List<Integer> bufferedSounds = new ArrayList<Integer>();
 	
@@ -17,7 +17,6 @@ class SoundInterface {
 		try {
 			AL.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

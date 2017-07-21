@@ -9,6 +9,7 @@ import Inputs.KeyboardController;
 import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.KeyboardListener;
+import MusicPlayer.MusicPlayer;
 import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
@@ -88,8 +89,8 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
-		SoundSource sound = new SoundSource(0, 0);
-		sound.playSoundeffect(SoundInterface.loadSound("Audio/test.wav"));
+		MusicPlayer musicplayer = new MusicPlayer();
+		new Thread(musicplayer, "MusicPlayer").start();
 		
 		StartButton startButton = new StartButton("startbutton", inter, this); 
 		new Thread(startButton, "startbutton").start();
