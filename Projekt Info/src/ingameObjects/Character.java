@@ -33,6 +33,10 @@ public abstract class Character extends TextureObject {
 		
 	}
 
+	public Character(int x, int y, int width, int height, int textureID, String name, Interface inter) {
+		super(x, y, width, height, textureID, name, inter);
+	}
+
 	abstract void collision(ArrayList<Integer> effects);
 	
 	protected Vektor goTo(Vektor target){

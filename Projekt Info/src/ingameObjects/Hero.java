@@ -7,14 +7,15 @@ import gameLogic.World;
 
 public class Hero  extends Character implements IngameObject {
 	
-	Vektor inputDirection;
+	Vektor inputDirection = new Vektor(0, 0);
 	
 	public Hero(Vektor position, ArrayList <Integer> textureList, World world){
-		super(position.getX(), position.getY(), "Graphics/Protagonist/Stance/Stance_forward.png", "Hero" ,world.getInterface());
+		super(position.getX(), position.getY(), 632, 780, textureList.get(0).intValue(), "Hero",world.getInterface());
 		this.world = world;
 		this.position = position;
 		this.textureList = textureList;
 		healthPoints = 1000;
+		speed = 10;
 		team = 'h';
 	}
 
@@ -38,23 +39,23 @@ public class Hero  extends Character implements IngameObject {
 	public void tick() {
 		collision(world.detectCollissionType(position));
 		updateGraphic();
-		//stuff that hero should do in a tick
+		//stuff that hero should do in a tick;
 		movement(goTo(inputDirection));
-		
 	}
 	
 	public void setInput(boolean[] input){
+		System.out.println("Input set");
 		if(input[0] && !input[1] && !input[2] && !input[3]){
-			//N
-			inputDirection = new Vektor(-100, 0);
+			System.out.println("//N");
+			inputDirection = new Vektor(0, -100);
 		}
 		else if(input[0] && input[1] && !input[2] && !input[3]){
-			//NW
-			inputDirection = new Vektor(-100, 100);
+			System.out.println("//NW");
+			inputDirection = new Vektor(-100, -100);
 		}
 		else if(!input[0] && input[1] && !input[2] && !input[3]){
 			//W
-			inputDirection = new Vektor(0, -100);
+			inputDirection = new Vektor(-100, 0);
 		}
 		else if(!input[0] && input[1] && input[2] && !input[3]){
 			//SW

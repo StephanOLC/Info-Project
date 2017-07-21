@@ -26,6 +26,7 @@ public class World implements Runnable{
 		objectList = new ArrayList<IngameObject>();
 		deathNote = new ArrayList<IngameObject>();
 		this.level = new Level(level, this);
+		this.level.levelSpawns();
 	}
 	
 	public Interface getInterface(){

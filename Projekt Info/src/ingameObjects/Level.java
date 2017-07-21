@@ -9,11 +9,13 @@ import graphicObjects.TextureObject;
 public class Level extends TextureObject implements IngameObject {
 	
 	int level;
+	World world;
 	ArrayList <Integer> textureList;
 	
 	public Level(int level, World world){
 		super(0, 0, "Graphics/Icon.png", "Level" ,world.getInterface());
 		this.level = level;
+		this.world = world;
 		switch(level){
 		case 0: //spawns hero @start-position,sets up hitboxes for demo-level boundaries (effectNr = 0 , lifetime = -1) and level specific creep spawns
 			textureList = new ArrayList<Integer>();
@@ -38,7 +40,6 @@ public class Level extends TextureObject implements IngameObject {
 			
 		}
 		
-		world.spawn("Hero", 10, 10);
 	}
 
 	@Override
@@ -49,6 +50,10 @@ public class Level extends TextureObject implements IngameObject {
 			
 		}
 
+	}
+	
+	public void levelSpawns(){
+		world.spawn("Hero", 10, 10);
 	}
 
 	@Override

@@ -106,7 +106,7 @@ public class GameController implements KeyboardListener,ClickListener{
 			System.out.println("Stephan ist boosted");
 		}
 
-		World  world = new World(0, inter); 
+		world = new World(0, inter); 
 		new Thread(world, "world").start();
 		
 	}
