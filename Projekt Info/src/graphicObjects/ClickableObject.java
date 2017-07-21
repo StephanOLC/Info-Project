@@ -6,8 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import org.newdawn.slick.opengl.Texture;
-
 import Inputs.MouseController;
 import Interfaces.ClickListener;
 import Interfaces.Drawableobject;
