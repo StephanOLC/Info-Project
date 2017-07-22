@@ -209,6 +209,8 @@ public class Interface {
 			transy -= movey;
 			
 			glTranslatef(movex, movey, 0);
+			SoundInterface.move(movex, movey);
+			controller.getMusicPlayer().move(movex, movey);
 			
 		}
 		

@@ -12,6 +12,7 @@ public class MusicPlayer extends SoundSource implements Runnable {
 	private boolean close;
 	private long starttime;
 	private int songnumber;
+	private float x, y;
 	private Song playingSong;
 	private List<Song> defaultTheme;
 
@@ -27,8 +28,8 @@ public class MusicPlayer extends SoundSource implements Runnable {
 		musictheme = "";
 		
 		defaultTheme = new ArrayList<Song>();
-		defaultTheme.add(new Song((2*60 + 44)*1000, SoundInterface.loadSound("Audio/Startbildschirm.wav")));
-		defaultTheme.add(new Song((1*60 + 22)*1000, SoundInterface.loadSound("Audio/Win.wav")));
+		defaultTheme.add(new Song((0*60 + 44)*1000, SoundInterface.loadSound("Audio/Startbildschirm.wav")));
+		defaultTheme.add(new Song((0*60 + 22)*1000, SoundInterface.loadSound("Audio/test.wav")));
 		
 	}
 	
@@ -38,8 +39,10 @@ public class MusicPlayer extends SoundSource implements Runnable {
 			
 			long runningtime = System.currentTimeMillis() - starttime;
 			
+			setPosition(x, y);
+			
 			if(playingSong != null){
-				
+
 				if(playingSong.length < runningtime){
 					
 					playnextSong();
@@ -53,6 +56,13 @@ public class MusicPlayer extends SoundSource implements Runnable {
 			}
 			
 		}
+		
+	}
+	
+	public void move(float x, float y){
+		
+		this.x += x;
+		this.y += y;
 		
 	}
 	
@@ -73,13 +83,24 @@ public class MusicPlayer extends SoundSource implements Runnable {
 	private void defaultTheme(){
 		
 		songnumber++;
+		
 		if(songnumber < defaultTheme.size()){
 			
+			stopSoundeffect();
+			playingSong = defaultTheme.get(songnumber);
+			playSoundeffect(playingSong.soundbuffer);
+			
+			
+		}else{
+			
+			stopSoundeffect();
+			songnumber = 0;
 			playingSong = defaultTheme.get(songnumber);
 			playSoundeffect(playingSong.soundbuffer);
 			
 		}
 		
+		System.out.println("Now Playing defaultTheme: " + songnumber);
 		
 	}
 	

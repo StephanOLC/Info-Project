@@ -11,6 +11,7 @@ import org.lwjgl.util.WaveData;
 public class SoundInterface {
 		
 	static List<Integer> bufferedSounds = new ArrayList<Integer>();
+	static float x , y;
 	
 	public static void init(){
 		
@@ -27,6 +28,24 @@ public class SoundInterface {
 		AL10.alListener3f(AL10.AL_POSITION, 0, 0, 0);
 		AL10.alListener3f(AL10.AL_VELOCITY, 0, 0, 0);
 		
+		
+	}
+	
+	public static void setPosition(float xn,float yn){
+		
+		x = xn;
+		y = yn;
+		
+		AL10.alListener3f(AL10.AL_POSITION, x, y, 0);
+		
+	}
+	
+	public static void move(float xm,float ym){
+		
+		x += xm;
+		y += ym;
+		
+		AL10.alListener3f(AL10.AL_POSITION, x, y, 0);
 		
 	}
 	

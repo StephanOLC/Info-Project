@@ -13,13 +13,13 @@ import MusicPlayer.MusicPlayer;
 import gameLogic.World;
 import Interfaces.Drawableobject;
 import graphicObjects.ClickableObject;
-import graphicObjects.SoundSource;
 import ingameObjects.StartButton;
 
 public class GameController implements KeyboardListener,ClickListener{
 	
 	private Interface inter;
 	private SoundInterface soundinter;
+	private MusicPlayer musicplayer;
 	private KeyboardController keyboardcontroller;
 	private MouseController mousecontroller;
 	private World world;
@@ -89,7 +89,7 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(false);
 		clearClickableObjects();
 		
-		MusicPlayer musicplayer = new MusicPlayer();
+		musicplayer = new MusicPlayer();
 		new Thread(musicplayer, "MusicPlayer").start();
 		
 		StartButton startButton = new StartButton("startbutton", inter, this); 
@@ -166,6 +166,12 @@ public class GameController implements KeyboardListener,ClickListener{
 	public SoundInterface getSoundInterface(){
 		
 		return soundinter;
+		
+	}
+	
+	public MusicPlayer getMusicPlayer(){
+		
+		return musicplayer;
 		
 	}
 	
