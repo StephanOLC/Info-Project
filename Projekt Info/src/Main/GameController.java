@@ -108,7 +108,9 @@ public class GameController implements KeyboardListener,ClickListener{
 		inter.setCameramoveable(true);
 		clearClickableObjects();
 		inter.setCameraLimits(500f, -500f, 500f, -500f);
-
+		
+		musicplayer.setMusicTheme("levelTheme", true);
+		
 		World  world = new World(0, inter); 
 		world.spawn("Arakh", 0, 0);
 		world.spawn("Stein", 500, 500);

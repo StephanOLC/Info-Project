@@ -16,7 +16,9 @@ public class SoundInterface {
 	public static void init(){
 		
 		try {
+			
 			AL.create();
+			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
