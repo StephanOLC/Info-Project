@@ -17,6 +17,7 @@ public class Hero  extends Character implements IngameObject {
 		healthPoints = 1000;
 		speed = 10;
 		team = 'h';
+		status = 1;
 	}
 
 	public Vektor getPosition(){
@@ -39,48 +40,30 @@ public class Hero  extends Character implements IngameObject {
 	public void tick() {
 		collision(world.detectCollissionType(position));
 		updateGraphic();
+		timer++;
 		//stuff that hero should do in a tick;
 		movement(goTo(inputDirection));
 	}
 	
 	public void setInput(boolean[] input){
-		System.out.println("Input set");
-		if(input[0] && !input[1] && !input[2] && !input[3]){
-			System.out.println("//N");
-			inputDirection = new Vektor(0, -100);
+		int x = 0;
+		int y = 0;
+		// W A S D
+		if(input[0]){
+			y = y-100;
 		}
-		else if(input[0] && input[1] && !input[2] && !input[3]){
-			System.out.println("//NW");
-			inputDirection = new Vektor(-100, -100);
+		if(input[1]){
+			x = x -100;
 		}
-		else if(!input[0] && input[1] && !input[2] && !input[3]){
-			//W
-			inputDirection = new Vektor(-100, 0);
+		if(input[2]){
+			y = y +100;
 		}
-		else if(!input[0] && input[1] && input[2] && !input[3]){
-			//SW
-			inputDirection = new Vektor(-100, 100);
+		if(input[3]){
+			x = x +100;
 		}
-		else if(!input[0] && !input[1] && input[2] && !input[3]){
-			//S
-			inputDirection = new Vektor(0, 100);
-		}
-		else if(!input[0] && !input[1] && input[2] && input[3]){
-			//SO
-			inputDirection = new Vektor(100, 100);
-		}
-		else if(!input[0] && !input[1] && !input[2] && input[3]){
-			//O
-			inputDirection = new Vektor(100, 0);
-		}
-		else if(input[0] && !input[1] && !input[2] && input[3]){
-			//NO
-			inputDirection = new Vektor(100, -100);
-		}
-		else {
-			//AFK
-			inputDirection = new Vektor(0, 0);
-		}
+		
+		inputDirection = new Vektor(x, y);
+		
 	}
 
 	@Override
@@ -112,6 +95,7 @@ public class Hero  extends Character implements IngameObject {
 			break;
 		}
 		graphicNR = graphicNR + 100*status;
+		System.out.println("AnimationsNR:" + graphicNR);
 		
 		switch(graphicNR){
 			case 110: setTexture(textureList.get(0));

@@ -48,8 +48,6 @@ public class KeyboardController implements Runnable{
 		pressed[3] = Keyboard.isKeyDown(Keyboard.KEY_D);
 		pressed[4] = Keyboard.isKeyDown(Keyboard.KEY_E);
 		
-		System.out.println("Key: " + pressed[0] + pressed[1] + pressed[2] +pressed[3]);
-		
 		gamecontroller.notifyWorldKeyboard(pressed);
 		
 	}

@@ -20,6 +20,7 @@ public abstract class Character extends TextureObject {
 	protected boolean alreadyMoved;
 	protected char direction;
 	protected ArrayList <Integer> textureList;
+	private int size;
 	
 	public Character(int x, int y, int width, int height, float rotation, String path, String name, Interface inter) {
 		
